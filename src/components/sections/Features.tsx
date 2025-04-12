@@ -1,39 +1,39 @@
 
 import React from "react";
-import { CheckCircle2, Zap, Clock, Lightbulb, Users, Lock } from "lucide-react";
+import { ShieldCheck, Clock, Lightbulb, Users, Lock, BarChart3 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const Features = () => {
   const features = [
     {
-      icon: <Zap />,
-      title: "High Performance",
-      description: "Our solutions are optimized for speed and efficiency, ensuring smooth operations.",
+      icon: <ShieldCheck />,
+      title: "HIPAA Compliant",
+      description: "Our solutions are fully HIPAA compliant, ensuring the security and privacy of sensitive healthcare data.",
     },
     {
       icon: <Clock />,
-      title: "24/7 Support",
-      description: "Round-the-clock technical support and monitoring for your peace of mind.",
+      title: "Rapid Implementation",
+      description: "Quick deployment process gets your team up and running with minimal disruption to your operations.",
     },
     {
       icon: <Lightbulb />,
-      title: "Innovative Approach",
-      description: "We leverage cutting-edge technologies to solve complex business challenges.",
+      title: "AI-Powered Insights",
+      description: "Advanced AI algorithms analyze data to provide actionable insights for healthcare and safety decisions.",
     },
     {
       icon: <Users />,
-      title: "Expert Team",
-      description: "Our specialists bring years of industry experience to every project.",
+      title: "Industry Expertise",
+      description: "Our team brings deep healthcare and public safety experience to every solution we develop.",
     },
     {
       icon: <Lock />,
       title: "Enterprise Security",
-      description: "Advanced security protocols to protect your sensitive business data.",
+      description: "Advanced security protocols to protect sensitive healthcare and safety data from threats.",
     },
     {
-      icon: <CheckCircle2 />,
-      title: "Quality Assurance",
-      description: "Rigorous testing protocols ensure reliable, bug-free solutions.",
+      icon: <BarChart3 />,
+      title: "Data-Driven Decisions",
+      description: "Transform raw data into meaningful insights that drive better clinical and safety outcomes.",
     },
   ];
 
@@ -43,8 +43,8 @@ const Features = () => {
         <div className="text-center mb-16">
           <h2 className="text-veritas-primary mb-4">Why Choose Veritas</h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-            At Veritas Technology Solutions, we differentiate ourselves through our commitment 
-            to excellence, innovation, and client satisfaction.
+            Our healthcare and safety-focused technology solutions deliver measurable 
+            improvements in outcomes, efficiency, and risk reduction.
           </p>
         </div>
 
@@ -77,20 +77,20 @@ const Features = () => {
         <div className="mt-24 bg-veritas-primary text-white rounded-xl p-8 shadow-lg">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div className="flex flex-col">
-              <span className="text-4xl font-bold mb-2">500+</span>
-              <span className="text-sm text-white/80">Clients Worldwide</span>
+              <span className="text-4xl font-bold mb-2">100+</span>
+              <span className="text-sm text-white/80">Healthcare Organizations</span>
             </div>
             <div className="flex flex-col">
               <span className="text-4xl font-bold mb-2">95%</span>
               <span className="text-sm text-white/80">Client Retention</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-4xl font-bold mb-2">1000+</span>
-              <span className="text-sm text-white/80">Projects Completed</span>
+              <span className="text-4xl font-bold mb-2">30+</span>
+              <span className="text-sm text-white/80">Safety Agencies</span>
             </div>
             <div className="flex flex-col">
               <span className="text-4xl font-bold mb-2">50+</span>
-              <span className="text-sm text-white/80">Tech Experts</span>
+              <span className="text-sm text-white/80">Healthcare Specialists</span>
             </div>
           </div>
         </div>

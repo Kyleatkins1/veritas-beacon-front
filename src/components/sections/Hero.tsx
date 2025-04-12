@@ -26,27 +26,28 @@ const Hero = () => {
         <div className="flex flex-col md:flex-row items-center">
           <div className="md:w-1/2 animate-fade-in-left">
             <div className="inline-block mb-4 bg-veritas-primary/10 text-veritas-primary px-4 py-2 rounded-full text-sm font-medium">
-              Innovative Technology Solutions
+              Healthcare & Safety SaaS Solutions
             </div>
             <h1 className="font-bold text-veritas-dark mb-6">
-              Transform Your Business 
+              Empowering Healthcare & Safety 
               <span className="text-veritas-primary"> Through Technology</span>
             </h1>
             <p className="text-lg text-gray-600 mb-8 max-w-lg">
-              Veritas Technology Solutions provides cutting-edge software, cloud infrastructure, 
-              and IT consulting services that help businesses thrive in the digital age.
+              Veritas Technology Solutions delivers specialized SaaS and custom software 
+              development for healthcare and safety-focused agencies, enhancing efficiency
+              and improving outcomes through innovative technology.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
               <Button className="bg-veritas-primary hover:bg-veritas-primary/90 flex items-center gap-2">
-                Get Started <ArrowRight size={16} />
+                Request a Demo <ArrowRight size={16} />
               </Button>
               <Button 
                 variant="outline" 
                 className="border-veritas-primary/30 text-veritas-primary hover:bg-veritas-primary/5"
                 onClick={scrollToServices}
               >
-                Explore Services
+                Explore Solutions
               </Button>
             </div>
             
@@ -60,7 +61,7 @@ const Hero = () => {
                 ))}
               </div>
               <p className="text-sm text-gray-600">
-                <span className="font-semibold">500+ clients</span> trust our services
+                <span className="font-semibold">Trusted by</span> leading healthcare providers
               </p>
             </div>
           </div>
@@ -72,7 +73,7 @@ const Hero = () => {
                 <div className="bg-white rounded-xl overflow-hidden">
                   <img 
                     src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158" 
-                    alt="Technology solutions" 
+                    alt="Healthcare technology solutions" 
                     className="w-full h-auto"
                   />
                 </div>
@@ -81,10 +82,10 @@ const Hero = () => {
               <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-xl shadow-lg">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-veritas-primary/20 rounded-full flex items-center justify-center">
-                    <span className="text-veritas-primary font-bold">99%</span>
+                    <span className="text-veritas-primary font-bold">98%</span>
                   </div>
                   <div className="text-sm">
-                    <p className="text-gray-600">Customer</p>
+                    <p className="text-gray-600">Client</p>
                     <p className="font-medium">Satisfaction</p>
                   </div>
                 </div>

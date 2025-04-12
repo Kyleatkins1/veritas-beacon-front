@@ -1,46 +1,46 @@
 
 import React from "react";
-import { Code, Cloud, Database, Shield, BarChart3, Users } from "lucide-react";
+import { Stethoscope, ShieldCheck, Activity, Database, Laptop, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 const Services = () => {
   const services = [
     {
-      icon: <Code className="h-10 w-10 text-veritas-primary mb-6" />,
-      title: "Custom Software Development",
+      icon: <Stethoscope className="h-10 w-10 text-veritas-primary mb-6" />,
+      title: "Healthcare SaaS Solutions",
       description:
-        "Tailored software solutions designed to address your specific business needs and challenges.",
+        "Specialized software applications designed specifically for healthcare providers to streamline workflows and improve patient outcomes.",
     },
     {
-      icon: <Cloud className="h-10 w-10 text-veritas-primary mb-6" />,
-      title: "Cloud Solutions",
+      icon: <ShieldCheck className="h-10 w-10 text-veritas-primary mb-6" />,
+      title: "Safety & Risk Management",
       description:
-        "Scalable cloud infrastructure and migration services to optimize your operations and reduce costs.",
+        "Integrated platforms for safety-focused agencies to identify, assess, and mitigate risks through data-driven insights.",
+    },
+    {
+      icon: <Activity className="h-10 w-10 text-veritas-primary mb-6" />,
+      title: "Analytics & Reporting",
+      description:
+        "Advanced data analytics solutions to transform healthcare and safety data into actionable insights for better decision-making.",
     },
     {
       icon: <Database className="h-10 w-10 text-veritas-primary mb-6" />,
-      title: "Data Analytics",
+      title: "Custom SaaS Development",
       description:
-        "Turn your data into actionable insights with our advanced analytics and BI solutions.",
+        "Tailored software solutions designed to address specific challenges in healthcare and public safety sectors.",
     },
     {
-      icon: <Shield className="h-10 w-10 text-veritas-primary mb-6" />,
-      title: "Cybersecurity Services",
+      icon: <Laptop className="h-10 w-10 text-veritas-primary mb-6" />,
+      title: "System Integration",
       description:
-        "Protect your business from threats with our comprehensive security assessments and solutions.",
-    },
-    {
-      icon: <BarChart3 className="h-10 w-10 text-veritas-primary mb-6" />,
-      title: "IT Consulting",
-      description:
-        "Strategic guidance to help you leverage technology for sustainable business growth.",
+        "Seamless integration services to connect your existing healthcare systems with new Veritas solutions for enhanced functionality.",
     },
     {
       icon: <Users className="h-10 w-10 text-veritas-primary mb-6" />,
-      title: "Managed IT Services",
+      title: "Implementation & Training",
       description:
-        "Proactive monitoring and maintenance to ensure your systems run smoothly and efficiently.",
+        "Comprehensive onboarding and training to ensure your team can maximize the value of Veritas technology solutions.",
     },
   ];
 
@@ -48,10 +48,10 @@ const Services = () => {
     <section id="services" className="section-padding bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-veritas-primary mb-4">Our Services</h2>
+          <h2 className="text-veritas-primary mb-4">Our Solutions</h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-            We offer a comprehensive range of technology services to help your business 
-            navigate the digital landscape and achieve sustainable growth.
+            We deliver specialized technology solutions designed specifically for healthcare 
+            and safety-focused agencies, driving efficiency and improving outcomes.
           </p>
         </div>
 
@@ -81,7 +81,7 @@ const Services = () => {
 
         <div className="text-center mt-16">
           <p className="text-gray-600 mb-6">
-            Not sure which service best fits your needs?
+            Discover how our healthcare and safety solutions can transform your agency.
           </p>
           <Button className="bg-veritas-primary hover:bg-veritas-primary/90">
             Schedule a Consultation

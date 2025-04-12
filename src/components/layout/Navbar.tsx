@@ -24,7 +24,8 @@ const Navbar = () => {
 
   const navLinks = [
     { name: "Home", href: "#home" },
-    { name: "Services", href: "#services" },
+    { name: "Solutions", href: "#services" },
+    { name: "Projects", href: "#projects" },
     { name: "Features", href: "#features" },
     { name: "Testimonials", href: "#testimonials" },
     { name: "Contact", href: "#contact" },
@@ -59,7 +60,7 @@ const Navbar = () => {
             </a>
           ))}
           <Button className="bg-veritas-primary hover:bg-veritas-primary/90">
-            Get Started
+            Request Demo
           </Button>
         </div>
 
@@ -87,7 +88,7 @@ const Navbar = () => {
               </a>
             ))}
             <Button className="bg-veritas-primary hover:bg-veritas-primary/90 w-full">
-              Get Started
+              Request Demo
             </Button>
           </div>
         </div>
