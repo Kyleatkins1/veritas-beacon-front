@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ChevronDown } from "lucide-react";
@@ -29,13 +28,12 @@ const Hero = () => {
               Launching 2025: Healthcare & Safety SaaS Solutions
             </div>
             <h1 className="font-bold text-veritas-dark mb-6">
-              Empowering Healthcare & Safety 
-              <span className="text-veritas-primary"> Through Technology</span>
+              Transforming Business 
+              <span className="text-veritas-primary"> Through Innovative Technology</span>
             </h1>
             <p className="text-lg text-gray-600 mb-8 max-w-lg">
-              Veritas Technology Solutions is a new startup delivering specialized SaaS and custom software 
-              development for healthcare and safety-focused agencies, enhancing efficiency
-              and improving outcomes through innovative technology.
+              Veritas Technology Solutions serves a wide variety of healthcare and public safety organizations across the USA, delivering specialized SaaS and custom software 
+              development focused on creating trusted solutions that enhance efficiency and improve outcomes.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
