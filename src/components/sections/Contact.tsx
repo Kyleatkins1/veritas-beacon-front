@@ -1,15 +1,18 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, MapPin, Clock, ArrowRight } from "lucide-react";
+import { Mail, MapPin, Clock, ArrowRight } from "lucide-react";
 
 const Contact = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Form submission logic would go here
     console.log("Form submitted");
+    
+    // TODO: Implement actual email sending to info@veritastech.io
+    window.location.href = `mailto:info@veritastech.io?subject=${encodeURIComponent('Contact from Veritas Tech Website')}`;
+    
     // Show success message
     alert("Thank you for your message. We'll get back to you soon!");
   };
@@ -92,19 +95,8 @@ const Contact = () => {
                   <div>
                     <h4 className="font-medium">Our Location</h4>
                     <p className="text-white/80">
-                      123 Tech Avenue, Innovation District<br />
-                      San Francisco, CA 94107
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <Phone className="mr-4 h-6 w-6 text-veritas-accent shrink-0" />
-                  <div>
-                    <h4 className="font-medium">Phone Number</h4>
-                    <p className="text-white/80">
-                      (555) 123-4567<br />
-                      (555) 987-6543
+                      Serving clients across Georgia<br />
+                      Remote-first technology solutions
                     </p>
                   </div>
                 </div>
@@ -114,8 +106,8 @@ const Contact = () => {
                   <div>
                     <h4 className="font-medium">Email Address</h4>
                     <p className="text-white/80">
-                      info@veritastech.com<br />
-                      support@veritastech.com
+                      info@veritastech.io<br />
+                      support@veritastech.io
                     </p>
                   </div>
                 </div>

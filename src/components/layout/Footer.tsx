@@ -1,6 +1,5 @@
-
 import React from "react";
-import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from "lucide-react";
+import { Facebook, Twitter, Linkedin, Instagram, Mail, MapPin } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -13,7 +12,7 @@ const Footer = () => {
               Veritas<span className="text-veritas-accent">Tech</span>
             </h3>
             <p className="text-gray-300 mb-4">
-              Transforming businesses through innovative technology solutions.
+              Transforming businesses through innovative technology solutions, serving clients across Georgia.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-300 hover:text-veritas-accent transition-colors">
@@ -99,19 +98,9 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
             <ul className="space-y-3">
-              <li className="flex items-start space-x-3">
-                <MapPin size={20} className="text-veritas-accent shrink-0 mt-1" />
-                <span className="text-gray-300">
-                  123 Tech Avenue, Innovation District
-                </span>
-              </li>
-              <li className="flex items-center space-x-3">
-                <Phone size={20} className="text-veritas-accent" />
-                <span className="text-gray-300">(555) 123-4567</span>
-              </li>
               <li className="flex items-center space-x-3">
                 <Mail size={20} className="text-veritas-accent" />
-                <span className="text-gray-300">info@veritastech.com</span>
+                <span className="text-gray-300">info@veritastech.io</span>
               </li>
             </ul>
           </div>
