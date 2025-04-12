@@ -12,8 +12,8 @@ const Features = () => {
     },
     {
       icon: <Clock />,
-      title: "Rapid Implementation",
-      description: "Quick deployment process gets your team up and running with minimal disruption to your operations.",
+      title: "Future-Ready",
+      description: "We design with the future in mind, creating versatile systems that adapt to evolving healthcare and safety needs.",
     },
     {
       icon: <Lightbulb />,
@@ -43,8 +43,8 @@ const Features = () => {
         <div className="text-center mb-16">
           <h2 className="text-veritas-primary mb-4">Why Choose Veritas</h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-            Our healthcare and safety-focused technology solutions deliver measurable 
-            improvements in outcomes, efficiency, and risk reduction.
+            Our healthcare and safety-focused technology solutions are designed to deliver measurable 
+            improvements in outcomes, efficiency, and risk reduction when they launch in 2025.
           </p>
         </div>
 
@@ -73,24 +73,31 @@ const Features = () => {
           </div>
         </div>
 
-        {/* Stats Section */}
+        {/* Vision Section instead of Stats */}
         <div className="mt-24 bg-veritas-primary text-white rounded-xl p-8 shadow-lg">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div className="text-center mb-6">
+            <h3 className="text-2xl font-bold mb-4">Our Vision for 2025</h3>
+            <p className="max-w-2xl mx-auto">
+              As we prepare for our 2025 launch, we're building solutions that will revolutionize healthcare 
+              and safety technology, creating measurable improvements in outcomes and efficiency.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center mt-8">
             <div className="flex flex-col">
-              <span className="text-4xl font-bold mb-2">100+</span>
-              <span className="text-sm text-white/80">Healthcare Organizations</span>
+              <span className="text-4xl font-bold mb-2">Innovation</span>
+              <span className="text-sm text-white/80">AI-Driven Solutions</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-4xl font-bold mb-2">95%</span>
-              <span className="text-sm text-white/80">Client Retention</span>
+              <span className="text-4xl font-bold mb-2">Security</span>
+              <span className="text-sm text-white/80">HIPAA Compliance</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-4xl font-bold mb-2">30+</span>
-              <span className="text-sm text-white/80">Safety Agencies</span>
+              <span className="text-4xl font-bold mb-2">Efficiency</span>
+              <span className="text-sm text-white/80">Streamlined Workflows</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-4xl font-bold mb-2">50+</span>
-              <span className="text-sm text-white/80">Healthcare Specialists</span>
+              <span className="text-4xl font-bold mb-2">Safety</span>
+              <span className="text-sm text-white/80">Risk Reduction</span>
             </div>
           </div>
         </div>

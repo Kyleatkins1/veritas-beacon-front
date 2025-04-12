@@ -26,21 +26,21 @@ const Hero = () => {
         <div className="flex flex-col md:flex-row items-center">
           <div className="md:w-1/2 animate-fade-in-left">
             <div className="inline-block mb-4 bg-veritas-primary/10 text-veritas-primary px-4 py-2 rounded-full text-sm font-medium">
-              Healthcare & Safety SaaS Solutions
+              Launching 2025: Healthcare & Safety SaaS Solutions
             </div>
             <h1 className="font-bold text-veritas-dark mb-6">
               Empowering Healthcare & Safety 
               <span className="text-veritas-primary"> Through Technology</span>
             </h1>
             <p className="text-lg text-gray-600 mb-8 max-w-lg">
-              Veritas Technology Solutions delivers specialized SaaS and custom software 
+              Veritas Technology Solutions is a new startup delivering specialized SaaS and custom software 
               development for healthcare and safety-focused agencies, enhancing efficiency
               and improving outcomes through innovative technology.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
               <Button className="bg-veritas-primary hover:bg-veritas-primary/90 flex items-center gap-2">
-                Request a Demo <ArrowRight size={16} />
+                Schedule a Consultation <ArrowRight size={16} />
               </Button>
               <Button 
                 variant="outline" 
@@ -51,17 +51,9 @@ const Hero = () => {
               </Button>
             </div>
             
-            <div className="mt-8 flex items-center gap-8">
-              <div className="flex -space-x-2">
-                {[1, 2, 3, 4].map((i) => (
-                  <div 
-                    key={i}
-                    className={`w-8 h-8 rounded-full border-2 border-white bg-gray-${200 + i*100}`}
-                  ></div>
-                ))}
-              </div>
+            <div className="mt-8 flex items-center gap-4">
               <p className="text-sm text-gray-600">
-                <span className="font-semibold">Trusted by</span> leading healthcare providers
+                <span className="font-semibold">Coming soon:</span> Beta release in late 2025
               </p>
             </div>
           </div>
@@ -82,11 +74,11 @@ const Hero = () => {
               <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-xl shadow-lg">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-veritas-primary/20 rounded-full flex items-center justify-center">
-                    <span className="text-veritas-primary font-bold">98%</span>
+                    <span className="text-veritas-primary font-bold">2025</span>
                   </div>
                   <div className="text-sm">
-                    <p className="text-gray-600">Client</p>
-                    <p className="font-medium">Satisfaction</p>
+                    <p className="text-gray-600">Launch</p>
+                    <p className="font-medium">Coming Soon</p>
                   </div>
                 </div>
               </div>

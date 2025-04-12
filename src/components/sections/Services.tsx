@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Stethoscope, ShieldCheck, Activity, Database, Laptop, Users } from "lucide-react";
+import { Stethoscope, ShieldCheck, Activity, Database, Laptop, Users, Lightbulb, Search, Gauge } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -31,16 +31,28 @@ const Services = () => {
         "Tailored software solutions designed to address specific challenges in healthcare and public safety sectors.",
     },
     {
-      icon: <Laptop className="h-10 w-10 text-veritas-primary mb-6" />,
-      title: "System Integration",
+      icon: <Lightbulb className="h-10 w-10 text-veritas-primary mb-6" />,
+      title: "AI Implementation",
       description:
-        "Seamless integration services to connect your existing healthcare systems with new Veritas solutions for enhanced functionality.",
+        "Guidance on ethically implementing AI in healthcare and safety environments, from framework development to practical integration.",
+    },
+    {
+      icon: <Search className="h-10 w-10 text-veritas-primary mb-6" />,
+      title: "SEO Support",
+      description:
+        "Specialized SEO services for healthcare organizations to improve their digital presence and reach their target audience effectively.",
     },
     {
       icon: <Users className="h-10 w-10 text-veritas-primary mb-6" />,
-      title: "Implementation & Training",
+      title: "AI Education & Training",
       description:
-        "Comprehensive onboarding and training to ensure your team can maximize the value of Veritas technology solutions.",
+        "Comprehensive training programs to help your team understand and leverage artificial intelligence in healthcare and safety contexts.",
+    },
+    {
+      icon: <Gauge className="h-10 w-10 text-veritas-primary mb-6" />,
+      title: "Organizational AI Transition",
+      description:
+        "End-to-end support for organizations adopting AI technologies, covering ethics, governance, implementation, and operational integration.",
     },
   ];
 
@@ -55,7 +67,7 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {services.map((service, index) => (
             <Card 
               key={index} 

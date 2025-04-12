@@ -1,40 +1,36 @@
 
 import React, { useState } from "react";
-import { Star, ArrowLeft, ArrowRight, Quote } from "lucide-react";
+import { ArrowLeft, ArrowRight, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Testimonials = () => {
   const testimonials = [
     {
       content:
-        "Veritas Technology transformed our business operations with their custom software solution. The team's expertise and commitment to quality exceeded our expectations.",
-      author: "Sarah Johnson",
-      position: "CTO, Global Innovations",
-      rating: 5,
+        "As we prepare for our 2025 launch, we're partnering with leading healthcare organizations to refine our solutions through beta testing and collaborative development.",
+      author: "Veritas Leadership Team",
+      position: "Beta Program Announcement",
       image: "https://i.pravatar.cc/150?img=32",
     },
     {
       content:
-        "Our migration to cloud infrastructure with Veritas was seamless. They provided expert guidance throughout the process and delivered exceptional results within our timeline.",
-      author: "Michael Chen",
-      position: "IT Director, NextGen Retail",
-      rating: 5,
+        "Our AI implementation framework is designed specifically for healthcare environments, addressing the unique ethical and operational challenges of this sensitive sector.",
+      author: "Veritas AI Team",
+      position: "AI Implementation Overview",
       image: "https://i.pravatar.cc/150?img=12",
     },
     {
       content:
-        "The cybersecurity assessment conducted by Veritas identified critical vulnerabilities in our systems. Their remediation plan was comprehensive and implemented efficiently.",
-      author: "Emily Rodriguez",
-      position: "Security Manager, FinTech Solutions",
-      rating: 5,
+        "Safety and security are foundational elements of our development process. Every solution we create undergoes rigorous security testing to protect sensitive healthcare data.",
+      author: "Veritas Security Team",
+      position: "Security Framework",
       image: "https://i.pravatar.cc/150?img=23",
     },
     {
       content: 
-        "Veritas' data analytics solution has given us valuable insights that have directly contributed to a 30% increase in our revenue. Highly recommended!",
-      author: "David Thompson",
-      position: "CEO, Analytics Pro",
-      rating: 5,
+        "We're currently accepting applications for our Early Adopter Program, allowing select organizations to gain early access to our solutions before the official 2025 launch.",
+      author: "Veritas Product Team",
+      position: "Early Adopter Program",
       image: "https://i.pravatar.cc/150?img=5",
     },
   ];
@@ -57,10 +53,9 @@ const Testimonials = () => {
     <section id="testimonials" className="section-padding bg-veritas-light">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-veritas-primary mb-4">What Our Clients Say</h2>
+          <h2 className="text-veritas-primary mb-4">From Our Team</h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-            Don't just take our word for it. Hear from our satisfied clients about 
-            their experience working with Veritas Technology Solutions.
+            Learn more about our vision, approach, and upcoming product launches as we prepare for our 2025 debut.
           </p>
         </div>
 
@@ -80,11 +75,6 @@ const Testimonials = () => {
                     alt={testimonials[currentIndex].author}
                     className="w-full h-full object-cover"
                   />
-                </div>
-                <div className="flex items-center mb-2">
-                  {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
-                    <Star key={i} size={16} className="fill-yellow-400 text-yellow-400" />
-                  ))}
                 </div>
                 <h4 className="font-semibold text-center">{testimonials[currentIndex].author}</h4>
                 <p className="text-sm text-gray-500 text-center">{testimonials[currentIndex].position}</p>
@@ -137,13 +127,20 @@ const Testimonials = () => {
           </div>
         </div>
 
-        {/* Logos section */}
+        {/* Vision section instead of logos */}
         <div className="mt-20">
-          <p className="text-center text-gray-500 mb-8">Trusted by industry leaders</p>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center opacity-70">
-            {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="h-12 w-24 bg-gray-300 rounded"></div>
-            ))}
+          <p className="text-center text-gray-700 font-semibold mb-8">Preparing for launch in 2025</p>
+          <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100">
+            <div className="text-center max-w-3xl mx-auto">
+              <h3 className="text-xl font-semibold mb-4">Join Our Early Access Program</h3>
+              <p className="text-gray-600 mb-6">
+                Be among the first to experience our innovative healthcare and safety solutions as we prepare for our official launch. 
+                We're looking for organizations interested in partnering with us during our beta testing phase.
+              </p>
+              <Button className="bg-veritas-primary hover:bg-veritas-primary/90">
+                Apply for Beta Access
+              </Button>
+            </div>
           </div>
         </div>
       </div>
