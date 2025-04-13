@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { BarChart3, Activity, Calendar, AlertTriangle, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -92,6 +93,14 @@ const Projects = ({ onEarlyAccessClick }: ProjectsProps) => {
           >
             Request Early Access
           </Button>
+        </div>
+
+        {/* Add disclaimer about project images */}
+        <div className="mt-6 text-center">
+          <p className="text-sm text-gray-500 italic">
+            * Disclaimer: Project interface images are conceptual representations and may differ from the final product. 
+            Actual interfaces are subject to change during beta and development stages.
+          </p>
         </div>
       </div>
 
