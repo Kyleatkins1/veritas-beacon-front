@@ -12,30 +12,30 @@ const Testimonials = ({ onEarlyAccessClick }: TestimonialsProps) => {
     {
       content:
         "We founded Veritas Technology Solutions with a vision to transform healthcare safety through innovative AI. Our mission is to build solutions that protect lives and improve outcomes.",
-      author: "Dr. Samuel Richardson",
+      author: "Kyle P. Atkins, Ed.S., NRP, FACHDM",
       position: "Founder & Systems Architect",
-      image: "https://i.pravatar.cc/150?img=32",
+      image: "/lovable-uploads/2000c331-7bb8-4ad3-b7e1-f48933944702.png",
     },
     {
       content:
         "Healthcare safety is personal to me. After witnessing preventable errors in my own family, I committed to building technology that could change the system for the better.",
-      author: "Dr. Samuel Richardson",
+      author: "Kyle P. Atkins, Ed.S., NRP, FACHDM",
       position: "Founder & Systems Architect",
-      image: "https://i.pravatar.cc/150?img=32",
+      image: "/lovable-uploads/2000c331-7bb8-4ad3-b7e1-f48933944702.png",
     },
     {
       content:
         "Our 2025 launch represents years of research, development, and collaboration with industry partners. We're creating systems that can anticipate risks before they become dangers.",
-      author: "Dr. Samuel Richardson",
+      author: "Kyle P. Atkins, Ed.S., NRP, FACHDM",
       position: "Founder & Systems Architect",
-      image: "https://i.pravatar.cc/150?img=32",
+      image: "/lovable-uploads/2000c331-7bb8-4ad3-b7e1-f48933944702.png",
     },
     {
       content: 
         "Technology alone isn't enough. We're building a comprehensive approach that combines cutting-edge AI with human expertise and rigorous ethical standards.",
-      author: "Dr. Samuel Richardson",
+      author: "Kyle P. Atkins, Ed.S., NRP, FACHDM",
       position: "Founder & Systems Architect",
-      image: "https://i.pravatar.cc/150?img=32",
+      image: "/lovable-uploads/2000c331-7bb8-4ad3-b7e1-f48933944702.png",
     },
   ];
 
@@ -59,7 +59,7 @@ const Testimonials = ({ onEarlyAccessClick }: TestimonialsProps) => {
         <div className="text-center mb-16">
           <h2 className="text-veritas-primary mb-4">A Word From Our Founder</h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-            Insights from Dr. Samuel Richardson, Founder and Systems Architect of Veritas Technology Solutions.
+            Insights from Kyle P. Atkins, Founder and Systems Architect of Veritas Technology Solutions.
           </p>
         </div>
 
