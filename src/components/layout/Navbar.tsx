@@ -4,7 +4,11 @@ import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
-const Navbar = () => {
+interface NavbarProps {
+  onEarlyAccessClick?: () => void;
+}
+
+const Navbar = ({ onEarlyAccessClick }: NavbarProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -59,8 +63,11 @@ const Navbar = () => {
               {link.name}
             </a>
           ))}
-          <Button className="bg-veritas-primary hover:bg-veritas-primary/90">
-            Request Demo
+          <Button 
+            className="bg-veritas-primary hover:bg-veritas-primary/90"
+            onClick={onEarlyAccessClick}
+          >
+            Request Early Access
           </Button>
         </div>
 
@@ -87,8 +94,11 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
-            <Button className="bg-veritas-primary hover:bg-veritas-primary/90 w-full">
-              Request Demo
+            <Button 
+              className="bg-veritas-primary hover:bg-veritas-primary/90 w-full"
+              onClick={onEarlyAccessClick}
+            >
+              Request Early Access
             </Button>
           </div>
         </div>
