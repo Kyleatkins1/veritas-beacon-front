@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { BarChart3, Activity, Calendar, AlertTriangle, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -24,7 +25,8 @@ const Projects = ({ onEarlyAccessClick }: ProjectsProps) => {
       title: "Veritas NarcTrack",
       subtitle: "Medication Administration Analysis",
       description: "Enables healthcare agencies to evaluate trends and identify potential issues with medication administrations, providing early identification of risks.",
-      status: "Beta testing - Release in late 2025"
+      status: "Beta testing - Release in late 2025",
+      previewImage: "/lovable-uploads/5731fde4-2b21-42b8-b936-bd947c7015bd.png"
     },
     {
       icon: <Calendar size={24} className="text-veritas-primary mb-4" />,
@@ -118,7 +120,30 @@ const Projects = ({ onEarlyAccessClick }: ProjectsProps) => {
             </>
           )}
 
-          {selectedProject !== null && selectedProject > 0 && (
+          {selectedProject === 1 && (
+            <>
+              <DialogHeader>
+                <DialogTitle className="text-xl font-bold text-veritas-primary">
+                  {projects[1].title} - {projects[1].subtitle}
+                </DialogTitle>
+              </DialogHeader>
+              <div className="mt-4">
+                <img 
+                  src={projects[1].previewImage} 
+                  alt="Veritas NarcTrack Dashboard" 
+                  className="w-full rounded-md shadow-md" 
+                />
+                <p className="mt-4 text-gray-600">
+                  The Veritas NarcTrack platform provides real-time monitoring and analytics for medication 
+                  administration tracking. With features like inventory management, usage summaries, and 
+                  automated alerts for discrepancies, healthcare facilities can effectively manage controlled 
+                  substances and ensure compliance with regulations while identifying potential risks.
+                </p>
+              </div>
+            </>
+          )}
+
+          {selectedProject !== null && selectedProject > 1 && (
             <>
               <DialogHeader>
                 <DialogTitle className="text-xl font-bold text-veritas-primary">
