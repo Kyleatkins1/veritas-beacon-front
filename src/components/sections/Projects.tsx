@@ -3,7 +3,11 @@ import React from "react";
 import { BarChart3, Activity, Calendar, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const Projects = () => {
+interface ProjectsProps {
+  onEarlyAccessClick?: () => void;
+}
+
+const Projects = ({ onEarlyAccessClick }: ProjectsProps) => {
   const projects = [
     {
       icon: <Activity size={24} className="text-veritas-primary mb-4" />,
@@ -75,7 +79,10 @@ const Projects = () => {
 
         <div className="mt-12 text-center">
           <p className="text-gray-500 italic mb-6">Additional innovative products are currently in development</p>
-          <Button className="bg-veritas-primary hover:bg-veritas-primary/90">
+          <Button 
+            className="bg-veritas-primary hover:bg-veritas-primary/90"
+            onClick={onEarlyAccessClick}
+          >
             Request Early Access
           </Button>
         </div>

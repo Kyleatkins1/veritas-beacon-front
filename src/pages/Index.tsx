@@ -14,15 +14,19 @@ import EarlyAccessForm from "@/components/forms/EarlyAccessForm";
 const Index = () => {
   const [earlyAccessDialogOpen, setEarlyAccessDialogOpen] = useState(false);
 
+  const handleEarlyAccessClick = () => {
+    setEarlyAccessDialogOpen(true);
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar onEarlyAccessClick={() => setEarlyAccessDialogOpen(true)} />
+      <Navbar onEarlyAccessClick={handleEarlyAccessClick} />
       <main>
         <Hero />
         <Services />
-        <Projects />
+        <Projects onEarlyAccessClick={handleEarlyAccessClick} />
         <Features />
-        <Testimonials />
+        <Testimonials onEarlyAccessClick={handleEarlyAccessClick} />
         <Contact />
       </main>
       <Footer />

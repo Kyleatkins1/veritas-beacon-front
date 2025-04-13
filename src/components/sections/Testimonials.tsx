@@ -3,7 +3,11 @@ import React, { useState } from "react";
 import { ArrowLeft, ArrowRight, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const Testimonials = () => {
+interface TestimonialsProps {
+  onEarlyAccessClick?: () => void;
+}
+
+const Testimonials = ({ onEarlyAccessClick }: TestimonialsProps) => {
   const testimonials = [
     {
       content:
@@ -137,7 +141,10 @@ const Testimonials = () => {
                 Be among the first to experience our innovative healthcare and safety solutions as we prepare for our official launch. 
                 We're looking for organizations interested in partnering with us during our beta testing phase.
               </p>
-              <Button className="bg-veritas-primary hover:bg-veritas-primary/90">
+              <Button 
+                className="bg-veritas-primary hover:bg-veritas-primary/90"
+                onClick={onEarlyAccessClick}
+              >
                 Apply for Beta Access
               </Button>
             </div>
