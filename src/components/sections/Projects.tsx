@@ -40,7 +40,8 @@ const Projects = ({ onEarlyAccessClick }: ProjectsProps) => {
       title: "Veritas CertTrack",
       subtitle: "Blockchain Certificate Verification",
       description: "Provides verified blockchain certificates of authentication for a wide variety of providers, ensuring secure and transparent continuing education and professional certification verification.",
-      status: "Beta testing - Release in late 2025"
+      status: "Beta testing - Release in late 2025",
+      previewImage: "/lovable-uploads/8ac690d4-4b56-46a4-979c-4fa5839d09c7.png"
     }
   ];
 
@@ -181,12 +182,29 @@ const Projects = ({ onEarlyAccessClick }: ProjectsProps) => {
                 </DialogTitle>
               </DialogHeader>
               <div className="mt-4">
-                <p className="text-gray-600">
-                  {projects[selectedProject].description}
-                </p>
-                <p className="text-sm font-medium text-amber-600 mt-4">
-                  {projects[selectedProject].status}
-                </p>
+                {projects[selectedProject].previewImage && (
+                  <img 
+                    src={projects[selectedProject].previewImage} 
+                    alt={`${projects[selectedProject].title} Dashboard`} 
+                    className="w-full max-h-[500px] object-contain rounded-md shadow-md mb-4" 
+                  />
+                )}
+                <div className="space-y-2">
+                  <p className="text-gray-600">{projects[selectedProject].description}</p>
+                  <p className="text-sm font-medium text-amber-600">
+                    {projects[selectedProject].status}
+                  </p>
+                  <div className="mt-4">
+                    <p className="text-gray-700 font-semibold">Key Features:</p>
+                    <ul className="list-disc list-inside text-gray-600">
+                      <li>Blockchain-verified certificates</li>
+                      <li>Secure professional credential authentication</li>
+                      <li>Transparent verification process</li>
+                      <li>Support for multiple certification types</li>
+                      <li>Easy-to-use verification platform</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </>
           )}
