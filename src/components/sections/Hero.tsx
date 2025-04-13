@@ -1,8 +1,18 @@
-import React from "react";
+
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ChevronDown } from "lucide-react";
+import { 
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle
+} from "@/components/ui/dialog";
+import ConsultationForm from "@/components/forms/ConsultationForm";
 
 const Hero = () => {
+  const [consultationDialogOpen, setConsultationDialogOpen] = useState(false);
+
   const scrollToServices = () => {
     const servicesSection = document.getElementById("services");
     if (servicesSection) {
@@ -37,7 +47,10 @@ const Hero = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button className="bg-veritas-primary hover:bg-veritas-primary/90 flex items-center gap-2">
+              <Button 
+                className="bg-veritas-primary hover:bg-veritas-primary/90 flex items-center gap-2"
+                onClick={() => setConsultationDialogOpen(true)}
+              >
                 Schedule a Consultation <ArrowRight size={16} />
               </Button>
               <Button 
@@ -93,6 +106,18 @@ const Hero = () => {
           </button>
         </div>
       </div>
+
+      {/* Consultation Request Dialog */}
+      <Dialog open={consultationDialogOpen} onOpenChange={setConsultationDialogOpen}>
+        <DialogContent className="sm:max-w-[500px]">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold text-veritas-primary">
+              Schedule a Consultation
+            </DialogTitle>
+          </DialogHeader>
+          <ConsultationForm onClose={() => setConsultationDialogOpen(false)} />
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };

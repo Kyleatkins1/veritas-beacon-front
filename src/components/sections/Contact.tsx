@@ -1,20 +1,52 @@
-import React from "react";
+
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, MapPin, Clock, ArrowRight } from "lucide-react";
+import { 
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle
+} from "@/components/ui/dialog";
+import ConsultationForm from "@/components/forms/ConsultationForm";
+import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
+  const [consultationDialogOpen, setConsultationDialogOpen] = useState(false);
+  const { toast } = useToast();
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission logic would go here
-    console.log("Form submitted");
     
-    // TODO: Implement actual email sending to info@veritastech.io
-    window.location.href = `mailto:info@veritastech.io?subject=${encodeURIComponent('Contact from Veritas Tech Website')}`;
+    // Get form data
+    const formData = new FormData(e.target as HTMLFormElement);
+    const name = formData.get('name') as string;
+    const email = formData.get('email') as string;
+    const subject = formData.get('subject') as string;
+    const message = formData.get('message') as string;
     
-    // Show success message
-    alert("Thank you for your message. We'll get back to you soon!");
+    // Format email body
+    const emailSubject = encodeURIComponent('Contact from Veritas Tech Website');
+    const body = encodeURIComponent(
+      `Name: ${name}\n` +
+      `Email: ${email}\n` +
+      `Subject: ${subject}\n\n` +
+      `Message:\n${message}`
+    );
+    
+    // Open email client with pre-populated fields
+    window.location.href = `mailto:info@veritastech.io?subject=${emailSubject}&body=${body}`;
+    
+    // Show success toast
+    toast({
+      title: "Message Sent",
+      description: "Thank you for your message. We'll get back to you soon!",
+    });
+    
+    // Reset form
+    (e.target as HTMLFormElement).reset();
   };
 
   return (
@@ -39,6 +71,7 @@ const Contact = () => {
                 </label>
                 <Input 
                   id="name" 
+                  name="name"
                   placeholder="John Doe" 
                   required 
                   className="border-gray-300 focus:border-veritas-primary focus:ring-veritas-primary"
@@ -50,6 +83,7 @@ const Contact = () => {
                 </label>
                 <Input 
                   id="email" 
+                  name="email"
                   type="email" 
                   placeholder="john@example.com" 
                   required 
@@ -62,6 +96,7 @@ const Contact = () => {
                 </label>
                 <Input 
                   id="subject" 
+                  name="subject"
                   placeholder="How can we help you?" 
                   required 
                   className="border-gray-300 focus:border-veritas-primary focus:ring-veritas-primary"
@@ -73,6 +108,7 @@ const Contact = () => {
                 </label>
                 <Textarea 
                   id="message" 
+                  name="message"
                   rows={4} 
                   placeholder="Tell us about your project..." 
                   required 
@@ -95,7 +131,7 @@ const Contact = () => {
                   <div>
                     <h4 className="font-medium">Our Location</h4>
                     <p className="text-white/80">
-                      Serving clients across Georgia<br />
+                      Serving clients across the USA<br />
                       Remote-first technology solutions
                     </p>
                   </div>
@@ -131,13 +167,28 @@ const Contact = () => {
               <p className="text-gray-600 mb-6">
                 Schedule a free consultation with our experts to discuss your technology needs.
               </p>
-              <Button className="bg-veritas-secondary hover:bg-veritas-secondary/90">
+              <Button 
+                className="bg-veritas-secondary hover:bg-veritas-secondary/90"
+                onClick={() => setConsultationDialogOpen(true)}
+              >
                 Book a Consultation
               </Button>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Consultation Request Dialog */}
+      <Dialog open={consultationDialogOpen} onOpenChange={setConsultationDialogOpen}>
+        <DialogContent className="sm:max-w-[500px]">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold text-veritas-primary">
+              Schedule a Consultation
+            </DialogTitle>
+          </DialogHeader>
+          <ConsultationForm onClose={() => setConsultationDialogOpen(false)} />
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
