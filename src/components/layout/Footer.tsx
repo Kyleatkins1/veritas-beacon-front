@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Facebook, Twitter, Linkedin, Instagram, Mail, MapPin } from "lucide-react";
 
@@ -15,20 +14,7 @@ const Footer = () => {
             <p className="text-gray-300 mb-4">
               Transforming businesses through innovative technology solutions, focused on creating trusted solutions for healthcare and public safety organizations across the USA.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-gray-300 hover:text-veritas-accent transition-colors">
-                <Facebook size={20} />
-              </a>
-              <a href="#" className="text-gray-300 hover:text-veritas-accent transition-colors">
-                <Twitter size={20} />
-              </a>
-              <a href="#" className="text-gray-300 hover:text-veritas-accent transition-colors">
-                <Linkedin size={20} />
-              </a>
-              <a href="#" className="text-gray-300 hover:text-veritas-accent transition-colors">
-                <Instagram size={20} />
-              </a>
-            </div>
+            {/* Social media icons removed as requested */}
           </div>
 
           {/* Quick Links */}

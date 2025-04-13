@@ -31,7 +31,7 @@ const Navbar = ({ onEarlyAccessClick }: NavbarProps) => {
     { name: "Solutions", href: "#services" },
     { name: "Projects", href: "#projects" },
     { name: "Features", href: "#features" },
-    { name: "Testimonials", href: "#testimonials" },
+    { name: "Founder's Vision", href: "#testimonials" }, // Changed from "Testimonials"
     { name: "Contact", href: "#contact" },
   ];
 
