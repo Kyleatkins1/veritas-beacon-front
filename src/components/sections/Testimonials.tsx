@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { ArrowLeft, ArrowRight, Quote } from "lucide-react";
+import { ArrowLeft, ArrowRight, Quote, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface TestimonialsProps {
@@ -8,34 +8,34 @@ interface TestimonialsProps {
 }
 
 const Testimonials = ({ onEarlyAccessClick }: TestimonialsProps) => {
-  const testimonials = [
+  const founderQuotes = [
     {
       content:
-        "As we prepare for our 2025 launch, we're partnering with leading healthcare organizations to refine our solutions through beta testing and collaborative development.",
-      author: "Veritas Leadership Team",
-      position: "Beta Program Announcement",
+        "We founded Veritas Technology Solutions with a vision to transform healthcare safety through innovative AI. Our mission is to build solutions that protect lives and improve outcomes.",
+      author: "Dr. Samuel Richardson",
+      position: "Founder & Systems Architect",
       image: "https://i.pravatar.cc/150?img=32",
     },
     {
       content:
-        "Our AI implementation framework is designed specifically for healthcare environments, addressing the unique ethical and operational challenges of this sensitive sector.",
-      author: "Veritas AI Team",
-      position: "AI Implementation Overview",
-      image: "https://i.pravatar.cc/150?img=12",
+        "Healthcare safety is personal to me. After witnessing preventable errors in my own family, I committed to building technology that could change the system for the better.",
+      author: "Dr. Samuel Richardson",
+      position: "Founder & Systems Architect",
+      image: "https://i.pravatar.cc/150?img=32",
     },
     {
       content:
-        "Safety and security are foundational elements of our development process. Every solution we create undergoes rigorous security testing to protect sensitive healthcare data.",
-      author: "Veritas Security Team",
-      position: "Security Framework",
-      image: "https://i.pravatar.cc/150?img=23",
+        "Our 2025 launch represents years of research, development, and collaboration with industry partners. We're creating systems that can anticipate risks before they become dangers.",
+      author: "Dr. Samuel Richardson",
+      position: "Founder & Systems Architect",
+      image: "https://i.pravatar.cc/150?img=32",
     },
     {
       content: 
-        "We're currently accepting applications for our Early Adopter Program, allowing select organizations to gain early access to our solutions before the official 2025 launch.",
-      author: "Veritas Product Team",
-      position: "Early Adopter Program",
-      image: "https://i.pravatar.cc/150?img=5",
+        "Technology alone isn't enough. We're building a comprehensive approach that combines cutting-edge AI with human expertise and rigorous ethical standards.",
+      author: "Dr. Samuel Richardson",
+      position: "Founder & Systems Architect",
+      image: "https://i.pravatar.cc/150?img=32",
     },
   ];
 
@@ -43,13 +43,13 @@ const Testimonials = ({ onEarlyAccessClick }: TestimonialsProps) => {
 
   const nextTestimonial = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
+      prevIndex === founderQuotes.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   const prevTestimonial = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
+      prevIndex === 0 ? founderQuotes.length - 1 : prevIndex - 1
     );
   };
 
@@ -57,9 +57,9 @@ const Testimonials = ({ onEarlyAccessClick }: TestimonialsProps) => {
     <section id="testimonials" className="section-padding bg-veritas-light">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-veritas-primary mb-4">From Our Team</h2>
+          <h2 className="text-veritas-primary mb-4">A Word From Our Founder</h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-            Learn more about our vision, approach, and upcoming product launches as we prepare for our 2025 debut.
+            Insights from Dr. Samuel Richardson, Founder and Systems Architect of Veritas Technology Solutions.
           </p>
         </div>
 
@@ -75,23 +75,23 @@ const Testimonials = ({ onEarlyAccessClick }: TestimonialsProps) => {
               <div className="md:w-1/3 flex flex-col items-center">
                 <div className="w-24 h-24 rounded-full overflow-hidden mb-4">
                   <img
-                    src={testimonials[currentIndex].image}
-                    alt={testimonials[currentIndex].author}
+                    src={founderQuotes[currentIndex].image}
+                    alt={founderQuotes[currentIndex].author}
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <h4 className="font-semibold text-center">{testimonials[currentIndex].author}</h4>
-                <p className="text-sm text-gray-500 text-center">{testimonials[currentIndex].position}</p>
+                <h4 className="font-semibold text-center">{founderQuotes[currentIndex].author}</h4>
+                <p className="text-sm text-gray-500 text-center">{founderQuotes[currentIndex].position}</p>
               </div>
 
               <div className="md:w-2/3">
                 <p className="text-gray-700 text-lg italic mb-6">
-                  "{testimonials[currentIndex].content}"
+                  "{founderQuotes[currentIndex].content}"
                 </p>
                 
                 <div className="flex justify-between items-center">
                   <p className="text-sm text-gray-500">
-                    {currentIndex + 1} of {testimonials.length}
+                    {currentIndex + 1} of {founderQuotes.length}
                   </p>
                   
                   <div className="flex gap-2">
@@ -119,7 +119,7 @@ const Testimonials = ({ onEarlyAccessClick }: TestimonialsProps) => {
 
           {/* Testimonial indicator dots */}
           <div className="flex justify-center mt-6 space-x-2">
-            {testimonials.map((_, index) => (
+            {founderQuotes.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
@@ -131,21 +131,25 @@ const Testimonials = ({ onEarlyAccessClick }: TestimonialsProps) => {
           </div>
         </div>
 
-        {/* Vision section instead of logos */}
+        {/* Investment CTA section instead of Early Access */}
         <div className="mt-20">
-          <p className="text-center text-gray-700 font-semibold mb-8">Preparing for launch in 2025</p>
+          <p className="text-center text-gray-700 font-semibold mb-8">Launching in 2025 with your support</p>
           <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100">
             <div className="text-center max-w-3xl mx-auto">
-              <h3 className="text-xl font-semibold mb-4">Join Our Early Access Program</h3>
+              <div className="flex justify-center mb-4 text-veritas-secondary">
+                <TrendingUp size={32} />
+              </div>
+              <h3 className="text-xl font-semibold mb-4">Investment Opportunity</h3>
               <p className="text-gray-600 mb-6">
-                Be among the first to experience our innovative healthcare and safety solutions as we prepare for our official launch. 
-                We're looking for organizations interested in partnering with us during our beta testing phase.
+                Be part of the future of healthcare safety. We're currently seeking strategic investors who share our vision 
+                for revolutionizing patient safety through innovative technology solutions. 
+                Join us in making healthcare safer for everyone.
               </p>
               <Button 
-                className="bg-veritas-primary hover:bg-veritas-primary/90"
+                className="bg-veritas-secondary hover:bg-veritas-secondary/90"
                 onClick={onEarlyAccessClick}
               >
-                Apply for Beta Access
+                Request Investor Information
               </Button>
             </div>
           </div>

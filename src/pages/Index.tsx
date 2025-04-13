@@ -31,12 +31,12 @@ const Index = () => {
       </main>
       <Footer />
 
-      {/* Early Access Dialog */}
+      {/* Early Access / Investor Dialog */}
       <Dialog open={earlyAccessDialogOpen} onOpenChange={setEarlyAccessDialogOpen}>
         <DialogContent className="sm:max-w-[500px]">
           <DialogHeader>
             <DialogTitle className="text-xl font-bold text-veritas-primary">
-              Request Early Access
+              Request Investor Information
             </DialogTitle>
           </DialogHeader>
           <EarlyAccessForm onClose={() => setEarlyAccessDialogOpen(false)} />
