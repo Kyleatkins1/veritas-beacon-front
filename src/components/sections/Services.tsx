@@ -4,9 +4,11 @@ import { Stethoscope, ShieldCheck, Activity, Database, Laptop, Users, Lightbulb,
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import ConsultationForm from "@/components/forms/ConsultationForm";
 
 const Services = () => {
   const [selectedService, setSelectedService] = useState<number | null>(null);
+  const [consultationDialogOpen, setConsultationDialogOpen] = useState(false);
 
   const services = [
     {
@@ -102,7 +104,10 @@ const Services = () => {
           <p className="text-gray-600 mb-6">
             Discover how our healthcare and safety solutions can transform your agency.
           </p>
-          <Button className="bg-veritas-primary hover:bg-veritas-primary/90">
+          <Button 
+            className="bg-veritas-primary hover:bg-veritas-primary/90"
+            onClick={() => setConsultationDialogOpen(true)}
+          >
             Schedule a Consultation
           </Button>
         </div>
@@ -120,9 +125,20 @@ const Services = () => {
           </DialogContent>
         </Dialog>
       )}
+
+      {/* Consultation Request Dialog */}
+      <Dialog open={consultationDialogOpen} onOpenChange={setConsultationDialogOpen}>
+        <DialogContent className="sm:max-w-[500px]">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold text-veritas-primary">
+              Schedule a Consultation
+            </DialogTitle>
+          </DialogHeader>
+          <ConsultationForm onClose={() => setConsultationDialogOpen(false)} />
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
 
 export default Services;
-
