@@ -1,20 +1,24 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { BarChart3, Activity, Calendar, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 interface ProjectsProps {
   onEarlyAccessClick?: () => void;
 }
 
 const Projects = ({ onEarlyAccessClick }: ProjectsProps) => {
+  const [selectedProject, setSelectedProject] = useState<number | null>(null);
+  
   const projects = [
     {
       icon: <Activity size={24} className="text-veritas-primary mb-4" />,
       title: "Veritas Value",
       subtitle: "Healthcare Value Analysis Platform",
       description: "Integrated with AI to support Value Analysis Professionals in making data-driven decisions for healthcare procurement and resource allocation.",
-      status: "Beta testing - Release in late 2025"
+      status: "Beta testing - Release in late 2025",
+      previewImage: "/lovable-uploads/3aa7a363-13ef-4176-8e66-3f38e0cb7a14.png"
     },
     {
       icon: <AlertTriangle size={24} className="text-veritas-primary mb-4" />,
@@ -68,6 +72,7 @@ const Projects = ({ onEarlyAccessClick }: ProjectsProps) => {
                   <Button 
                     variant="outline" 
                     className="border-veritas-primary/30 text-veritas-primary hover:bg-veritas-primary/5"
+                    onClick={() => setSelectedProject(index)}
                   >
                     Learn more
                   </Button>
@@ -87,6 +92,52 @@ const Projects = ({ onEarlyAccessClick }: ProjectsProps) => {
           </Button>
         </div>
       </div>
+
+      {/* Project Details Dialog */}
+      <Dialog open={selectedProject !== null} onOpenChange={() => setSelectedProject(null)}>
+        <DialogContent className="sm:max-w-[800px]">
+          {selectedProject === 0 && (
+            <>
+              <DialogHeader>
+                <DialogTitle className="text-xl font-bold text-veritas-primary">
+                  {projects[0].title} - {projects[0].subtitle}
+                </DialogTitle>
+              </DialogHeader>
+              <div className="mt-4">
+                <img 
+                  src={projects[0].previewImage} 
+                  alt="Veritas Value Dashboard" 
+                  className="w-full rounded-md shadow-md" 
+                />
+                <p className="mt-4 text-gray-600">
+                  The Veritas Value platform provides an intuitive dashboard for healthcare professionals, 
+                  featuring AI Literature Review Tools, Value Analysis Systems, and Saved Reports & Searches. 
+                  This comprehensive solution helps Value Analysis Professionals make data-driven decisions for 
+                  healthcare procurement and resource allocation.
+                </p>
+              </div>
+            </>
+          )}
+
+          {selectedProject !== null && selectedProject > 0 && (
+            <>
+              <DialogHeader>
+                <DialogTitle className="text-xl font-bold text-veritas-primary">
+                  {projects[selectedProject].title} - {projects[selectedProject].subtitle}
+                </DialogTitle>
+              </DialogHeader>
+              <div className="mt-4">
+                <p className="text-gray-600">
+                  {projects[selectedProject].description}
+                </p>
+                <p className="text-sm font-medium text-amber-600 mt-4">
+                  {projects[selectedProject].status}
+                </p>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
