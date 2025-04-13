@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { ArrowLeft, ArrowRight, Quote, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -14,28 +13,28 @@ const Testimonials = ({ onEarlyAccessClick }: TestimonialsProps) => {
         "We founded Veritas Technology Solutions with a vision to transform healthcare safety through innovative AI. Our mission is to build solutions that protect lives and improve outcomes.",
       author: "Kyle P. Atkins, Ed.S., NRP, FACHDM",
       position: "Founder & Systems Architect",
-      image: "/lovable-uploads/2000c331-7bb8-4ad3-b7e1-f48933944702.png",
+      image: "/lovable-uploads/e1ef3005-1935-4a5b-8e0e-198a76807149.png",
     },
     {
       content:
         "Healthcare safety is personal to me. After witnessing preventable errors in my own family, I committed to building technology that could change the system for the better.",
       author: "Kyle P. Atkins, Ed.S., NRP, FACHDM",
       position: "Founder & Systems Architect",
-      image: "/lovable-uploads/2000c331-7bb8-4ad3-b7e1-f48933944702.png",
+      image: "/lovable-uploads/e1ef3005-1935-4a5b-8e0e-198a76807149.png",
     },
     {
       content:
         "Our 2025 launch represents years of research, development, and collaboration with industry partners. We're creating systems that can anticipate risks before they become dangers.",
       author: "Kyle P. Atkins, Ed.S., NRP, FACHDM",
       position: "Founder & Systems Architect",
-      image: "/lovable-uploads/2000c331-7bb8-4ad3-b7e1-f48933944702.png",
+      image: "/lovable-uploads/e1ef3005-1935-4a5b-8e0e-198a76807149.png",
     },
     {
       content: 
         "Technology alone isn't enough. We're building a comprehensive approach that combines cutting-edge AI with human expertise and rigorous ethical standards.",
       author: "Kyle P. Atkins, Ed.S., NRP, FACHDM",
       position: "Founder & Systems Architect",
-      image: "/lovable-uploads/2000c331-7bb8-4ad3-b7e1-f48933944702.png",
+      image: "/lovable-uploads/e1ef3005-1935-4a5b-8e0e-198a76807149.png",
     },
   ];
 
@@ -64,13 +63,11 @@ const Testimonials = ({ onEarlyAccessClick }: TestimonialsProps) => {
         </div>
 
         <div className="relative max-w-4xl mx-auto">
-          {/* Quote decoration */}
           <div className="absolute -top-6 -left-6 text-veritas-primary/10">
             <Quote size={80} />
           </div>
 
           <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12 relative z-10">
-            {/* Current testimonial */}
             <div className="flex flex-col md:flex-row gap-8 items-center">
               <div className="md:w-1/3 flex flex-col items-center">
                 <div className="w-24 h-24 rounded-full overflow-hidden mb-4">
@@ -117,7 +114,6 @@ const Testimonials = ({ onEarlyAccessClick }: TestimonialsProps) => {
             </div>
           </div>
 
-          {/* Testimonial indicator dots */}
           <div className="flex justify-center mt-6 space-x-2">
             {founderQuotes.map((_, index) => (
               <button
@@ -131,7 +127,6 @@ const Testimonials = ({ onEarlyAccessClick }: TestimonialsProps) => {
           </div>
         </div>
 
-        {/* Investment CTA section instead of Early Access */}
         <div className="mt-20">
           <p className="text-center text-gray-700 font-semibold mb-8">Launching in 2025 with your support</p>
           <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100">
