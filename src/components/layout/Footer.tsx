@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Facebook, Twitter, Linkedin, Instagram, Mail, MapPin } from "lucide-react";
 
@@ -67,28 +68,28 @@ const Footer = () => {
             <h4 className="text-lg font-semibold mb-4">Our Services</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-gray-300 hover:text-veritas-accent transition-colors">
-                  Custom Software Development
+                <a href="#services" className="text-gray-300 hover:text-veritas-accent transition-colors">
+                  Healthcare SaaS Solutions
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-veritas-accent transition-colors">
-                  Cloud Solutions
+                <a href="#services" className="text-gray-300 hover:text-veritas-accent transition-colors">
+                  Safety & Risk Management
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-veritas-accent transition-colors">
-                  Data Analytics
+                <a href="#services" className="text-gray-300 hover:text-veritas-accent transition-colors">
+                  Analytics & Reporting
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-veritas-accent transition-colors">
-                  Cybersecurity Services
+                <a href="#services" className="text-gray-300 hover:text-veritas-accent transition-colors">
+                  Custom SaaS Development
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-veritas-accent transition-colors">
-                  IT Consulting
+                <a href="#services" className="text-gray-300 hover:text-veritas-accent transition-colors">
+                  AI Implementation
                 </a>
               </li>
             </ul>
