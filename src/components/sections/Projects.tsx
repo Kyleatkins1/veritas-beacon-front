@@ -1,6 +1,5 @@
-
 import React, { useState } from "react";
-import { BarChart3, Activity, Calendar, AlertTriangle } from "lucide-react";
+import { BarChart3, Activity, Calendar, AlertTriangle, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
@@ -35,10 +34,10 @@ const Projects = ({ onEarlyAccessClick }: ProjectsProps) => {
       status: "Beta testing - Release in late 2025"
     },
     {
-      icon: <BarChart3 size={24} className="text-veritas-primary mb-4" />,
-      title: "Veritas System",
-      subtitle: "Core System",
-      description: "Our foundational platform that powers all Veritas solutions with integrated analytics, security, and healthcare-specific functionality.",
+      icon: <Shield size={24} className="text-veritas-primary mb-4" />,
+      title: "Veritas CertTrack",
+      subtitle: "Blockchain Certificate Verification",
+      description: "Provides verified blockchain certificates of authentication for a wide variety of providers, ensuring secure and transparent continuing education and professional certification verification.",
       status: "Beta testing - Release in late 2025"
     }
   ];
