@@ -9,37 +9,37 @@ import Features from "@/components/sections/Features";
 import Testimonials from "@/components/sections/Testimonials";
 import Contact from "@/components/sections/Contact";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import EarlyAccessForm from "@/components/forms/EarlyAccessForm";
+import InvestorRequestForm from "@/components/forms/InvestorRequestForm";
 
 const Index = () => {
-  const [earlyAccessDialogOpen, setEarlyAccessDialogOpen] = useState(false);
+  const [investorDialogOpen, setInvestorDialogOpen] = useState(false);
 
-  const handleEarlyAccessClick = () => {
-    setEarlyAccessDialogOpen(true);
+  const handleInvestorInfoClick = () => {
+    setInvestorDialogOpen(true);
   };
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar onEarlyAccessClick={handleEarlyAccessClick} />
+      <Navbar onEarlyAccessClick={handleInvestorInfoClick} />
       <main>
         <Hero />
         <Services />
-        <Projects onEarlyAccessClick={handleEarlyAccessClick} />
+        <Projects onEarlyAccessClick={handleInvestorInfoClick} />
         <Features />
-        <Testimonials onEarlyAccessClick={handleEarlyAccessClick} />
+        <Testimonials onEarlyAccessClick={handleInvestorInfoClick} />
         <Contact />
       </main>
       <Footer />
 
-      {/* Early Access / Investor Dialog */}
-      <Dialog open={earlyAccessDialogOpen} onOpenChange={setEarlyAccessDialogOpen}>
-        <DialogContent className="sm:max-w-[500px]">
+      {/* Investor Information Dialog */}
+      <Dialog open={investorDialogOpen} onOpenChange={setInvestorDialogOpen}>
+        <DialogContent className="sm:max-w-[550px]">
           <DialogHeader>
             <DialogTitle className="text-xl font-bold text-veritas-primary">
               Request Investor Information
             </DialogTitle>
           </DialogHeader>
-          <EarlyAccessForm onClose={() => setEarlyAccessDialogOpen(false)} />
+          <InvestorRequestForm onClose={() => setInvestorDialogOpen(false)} />
         </DialogContent>
       </Dialog>
     </div>
