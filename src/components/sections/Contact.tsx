@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -61,7 +60,6 @@ const Contact = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact form */}
           <div className="bg-white rounded-xl shadow-lg p-8">
             <h3 className="text-2xl font-semibold mb-6">Send us a message</h3>
             <form onSubmit={handleSubmit}>
@@ -121,7 +119,6 @@ const Contact = () => {
             </form>
           </div>
 
-          {/* Contact info */}
           <div>
             <div className="bg-veritas-primary rounded-xl text-white p-8 mb-8">
               <h3 className="text-2xl font-semibold mb-6">Contact Information</h3>
@@ -140,10 +137,10 @@ const Contact = () => {
                 <div className="flex items-start">
                   <Mail className="mr-4 h-6 w-6 text-veritas-accent shrink-0" />
                   <div>
-                    <h4 className="font-medium">Email Address</h4>
+                    <h4 className="font-medium">Email Addresses</h4>
                     <p className="text-white/80">
-                      info@veritastech.io<br />
-                      support@veritastech.io
+                      General Inquiries: info@veritastech.io<br />
+                      Technical Support: support@veritastech.io
                     </p>
                   </div>
                 </div>
@@ -161,7 +158,6 @@ const Contact = () => {
               </div>
             </div>
             
-            {/* CTA */}
             <div className="bg-gray-50 rounded-xl p-8">
               <h4 className="text-xl font-semibold mb-4">Ready to transform your business?</h4>
               <p className="text-gray-600 mb-6">
@@ -178,7 +174,6 @@ const Contact = () => {
         </div>
       </div>
 
-      {/* Consultation Request Dialog */}
       <Dialog open={consultationDialogOpen} onOpenChange={setConsultationDialogOpen}>
         <DialogContent className="sm:max-w-[500px]">
           <DialogHeader>
