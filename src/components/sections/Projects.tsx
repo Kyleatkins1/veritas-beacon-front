@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { BarChart3, Activity, Calendar, AlertTriangle, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -131,7 +130,7 @@ const Projects = ({ onEarlyAccessClick }: ProjectsProps) => {
                 <img 
                   src={projects[1].previewImage} 
                   alt="Veritas NarcTrack Dashboard" 
-                  className="w-full rounded-md shadow-md" 
+                  className="w-full max-h-[400px] object-cover rounded-md shadow-md" 
                 />
                 <p className="mt-4 text-gray-600">
                   The Veritas NarcTrack platform provides real-time monitoring and analytics for medication 
