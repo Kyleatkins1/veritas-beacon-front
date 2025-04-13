@@ -47,9 +47,14 @@ const Navbar = ({ onEarlyAccessClick }: NavbarProps) => {
       <div className="container mx-auto px-4 flex justify-between items-center">
         {/* Logo */}
         <a href="#" className="flex items-center">
-          <span className="text-xl font-bold text-veritas-primary">
-            Veritas<span className="text-veritas-secondary">Tech</span>
-          </span>
+          <div className="flex items-center">
+            <div className="w-10 h-10 rounded-md bg-gradient-to-br from-veritas-primary to-veritas-secondary flex items-center justify-center shadow-md">
+              <span className="text-white font-bold text-xl">V</span>
+            </div>
+            <span className="ml-2 text-xl font-bold text-veritas-primary">
+              Veritas<span className="text-veritas-secondary">Tech</span>
+            </span>
+          </div>
         </a>
 
         {/* Desktop Navigation */}
