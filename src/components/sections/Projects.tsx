@@ -32,7 +32,8 @@ const Projects = ({ onEarlyAccessClick }: ProjectsProps) => {
       title: "Veritas EventRisk",
       subtitle: "Event Safety Management",
       description: "A centralized platform allowing event planners and public safety agencies to collaborate on ensuring the safe planning and execution of public events.",
-      status: "Beta testing - Release in late 2025"
+      status: "Beta testing - Release in late 2025",
+      previewImage: "/lovable-uploads/1103b072-005c-4f89-8c9d-93c9b001315b.png"
     },
     {
       icon: <Shield size={24} className="text-veritas-primary mb-4" />,
@@ -142,7 +143,37 @@ const Projects = ({ onEarlyAccessClick }: ProjectsProps) => {
             </>
           )}
 
-          {selectedProject !== null && selectedProject > 1 && (
+          {selectedProject === 2 && (
+            <>
+              <DialogHeader>
+                <DialogTitle className="text-xl font-bold text-veritas-primary">
+                  {projects[2].title} - {projects[2].subtitle}
+                </DialogTitle>
+              </DialogHeader>
+              <div className="mt-4">
+                <img 
+                  src={projects[2].previewImage} 
+                  alt="Veritas EventRisk Dashboard" 
+                  className="w-full max-h-[500px] object-contain rounded-md shadow-md" 
+                />
+                <div className="mt-4 space-y-2">
+                  <p className="text-gray-600">
+                    Veritas EventRisk is a comprehensive event safety management platform designed to help event 
+                    planners and public safety agencies collaborate effectively. Key features include:
+                  </p>
+                  <ul className="list-disc list-inside text-gray-600">
+                    <li>Interactive dashboard for real-time event risk monitoring</li>
+                    <li>FEMA/NCS4 compliance tracking</li>
+                    <li>Emergency services coordination</li>
+                    <li>Detailed risk factor assessment</li>
+                    <li>Proactive mitigation strategy implementation</li>
+                  </ul>
+                </div>
+              </div>
+            </>
+          )}
+
+          {selectedProject !== null && selectedProject > 2 && (
             <>
               <DialogHeader>
                 <DialogTitle className="text-xl font-bold text-veritas-primary">
