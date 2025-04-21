@@ -12,8 +12,8 @@ const ProjectDialogWebStudio = () => (
     </DialogHeader>
     <div className="mt-4">
       <img
-        src={projects[7].previewImage}
-        alt="Veritas Web Studio screenshot"
+        src="/lovable-uploads/efeb3832-edc8-4e9a-b921-0d1c2d73a481.png"
+        alt="Veritas Web Studio mockup"
         className="w-full max-h-[400px] object-cover rounded-md shadow-md mb-4"
       />
       <div className="space-y-3 text-gray-600">
@@ -35,3 +35,4 @@ const ProjectDialogWebStudio = () => (
 );
 
 export default ProjectDialogWebStudio;
+
