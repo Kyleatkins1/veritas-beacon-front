@@ -4,12 +4,11 @@ import { DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { projects } from "../projectsData";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
+// List of the new EventRisk preview images for the carousel
 const eventRiskImages = [
-  "/lovable-uploads/5f00421a-42f9-4447-a174-5f0cc1163f65.png",
-  "/lovable-uploads/c1d45e37-366f-4717-b1f5-e2c2b68bcb0f.png",
-  "/lovable-uploads/0d5b5c1e-6cf6-41bc-b83a-de90f9c8f26b.png",
-  "/lovable-uploads/fa9aa82b-2b08-4772-a2aa-022544c573e0.png",
-  "/lovable-uploads/ce3c141a-24f9-44fa-9ca2-40450b0ac7d8.png"
+  "/lovable-uploads/6a5d6fdf-979d-4d4e-9274-58bb3d41e958.png",
+  "/lovable-uploads/204f8959-2e75-4646-a8f7-41531c72dd59.png",
+  "/lovable-uploads/b08ee937-6d98-4ff4-bb22-84365df831e2.png"
 ];
 
 const ProjectDialogEventRisk = () => (
@@ -20,7 +19,7 @@ const ProjectDialogEventRisk = () => (
       </DialogTitle>
     </DialogHeader>
     <div className="mt-4">
-      <Carousel className="w-full relative max-w-3xl mx-auto">
+      <Carousel className="w-full relative max-w-3xl mx-auto mb-4">
         <CarouselContent>
           {eventRiskImages.map((img, idx) => (
             <CarouselItem key={idx}>
@@ -36,22 +35,13 @@ const ProjectDialogEventRisk = () => (
         <CarouselPrevious />
         <CarouselNext />
       </Carousel>
-      <div className="mt-4 space-y-2">
-        <p className="text-gray-600">
-          Veritas EventRisk is a comprehensive event safety management platform designed to help event 
-          planners and public safety agencies collaborate effectively. Key features include:
-        </p>
-        <ul className="list-disc list-inside text-gray-600">
-          <li>Interactive dashboard for real-time event risk monitoring</li>
-          <li>FEMA/NCS4 compliance tracking</li>
-          <li>Emergency services coordination</li>
-          <li>Detailed risk factor assessment</li>
-          <li>Proactive mitigation strategy implementation</li>
-        </ul>
-      </div>
+      <p className="mt-4 text-gray-600">
+        The Veritas EventRisk platform is a centralized solution for public event planning, risk management, and safety operations. 
+        It brings together event organizers, safety officials, and agencies in a single workspace to ensure incident prevention, 
+        documentation, and real-time response collaboration.
+      </p>
     </div>
   </>
 );
 
 export default ProjectDialogEventRisk;
-
