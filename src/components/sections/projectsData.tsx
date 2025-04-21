@@ -1,5 +1,4 @@
-
-import { BarChart3, Activity, Calendar, AlertTriangle, Shield, Laptop } from "lucide-react";
+import { BarChart3, Activity, Calendar, AlertTriangle, Shield, Laptop, Folder } from "lucide-react";
 
 export interface Project {
   icon: JSX.Element;
@@ -66,5 +65,23 @@ export const projects: Project[] = [
       "A next-generation AI-powered platform for professional learning, growth, and upskilling—with advanced course recommendations, progress tracking, and certification management. ",
     status: "In development – Release in late 2025",
     previewImage: "/lovable-uploads/69138c17-cab0-46f0-8cfe-e2170b10f21e.png"
+  },
+  {
+    icon: <Folder size={24} className="text-veritas-primary mb-4" />,
+    title: "Veritas Nexus",
+    subtitle: "Command Center · CRM · Helpdesk System",
+    description:
+      "An advanced command center, CRM, and helpdesk system for centralized operations. Veritas Nexus combines powerful client management, knowledge bases, analytics, and support desk—all in a single unified platform designed for public safety, healthcare, and professional organizations.",
+    status: "Release in late 2025",
+    previewImage: "/lovable-uploads/dce229ee-0694-42e1-8056-37c94bdda106.png"
+  },
+  {
+    icon: <Laptop size={24} className="text-veritas-primary mb-4" />,
+    title: "Veritas Web Studio",
+    subtitle: "AI-Powered Turnkey Web Design",
+    description:
+      "Turnkey web design and development platform using the latest AI-driven features for organizations needing beautiful, effective modern websites. Launch with advanced tools, stunning design, and AI-powered integrations—no coding or tech skills needed.",
+    status: "Releasing May/June 2025",
+    previewImage: "/lovable-uploads/4f8403aa-58a6-46c8-8f81-2128e021eb8f.png"
   }
 ];
