@@ -1,7 +1,8 @@
 
 import React from "react";
-import { Button } from "@/components/ui/button";
 import type { Project } from "./projectsData";
+import ProjectCardLive from "./cards/ProjectCardLive";
+import ProjectCardBeta from "./cards/ProjectCardBeta";
 
 interface ProjectCardProps {
   project: Project;
@@ -10,61 +11,10 @@ interface ProjectCardProps {
 }
 
 const ProjectCard = ({ project, index, onLearnMore }: ProjectCardProps) => {
-  return (
-    <div className="bg-gray-50 rounded-xl p-6 border border-gray-100 transition-all hover:shadow-md relative overflow-hidden">
-      {index === 0 && (
-        <span className="absolute left-6 top-4 bg-green-500 text-white text-xs font-semibold px-3 py-1 rounded-full z-10 animate-fade-in">
-          LIVE
-        </span>
-      )}
-      <div className="flex flex-col h-full">
-        <div>
-          {project.icon}
-          <h3 className="text-xl font-semibold mb-1">{project.title}</h3>
-          <p className="text-sm text-veritas-primary font-medium mb-3">
-            {project.subtitle}
-          </p>
-        </div>
-        <p className="text-gray-600 mb-4">{project.description}</p>
-        <div className="mt-auto flex flex-col gap-3">
-          {index === 0 ? (
-            <>
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block"
-              >
-                <Button className="bg-green-500 hover:bg-green-600 text-white font-semibold w-full" variant="default">
-                  Visit Website
-                </Button>
-              </a>
-              <Button
-                variant="outline"
-                className="border-green-300 text-green-600 hover:bg-green-50 w-full"
-                onClick={() => onLearnMore(index)}
-              >
-                Learn more
-              </Button>
-            </>
-          ) : (
-            <>
-              <p className="text-sm font-medium text-amber-600 mb-1">
-                {project.status}
-              </p>
-              <Button
-                variant="outline"
-                className="border-veritas-primary/30 text-veritas-primary hover:bg-veritas-primary/5"
-                onClick={() => onLearnMore(index)}
-              >
-                Learn more
-              </Button>
-            </>
-          )}
-        </div>
-      </div>
-    </div>
-  );
+  if (index === 0) {
+    return <ProjectCardLive project={project} index={index} onLearnMore={onLearnMore} />;
+  }
+  return <ProjectCardBeta project={project} index={index} onLearnMore={onLearnMore} />;
 };
 
 export default ProjectCard;
