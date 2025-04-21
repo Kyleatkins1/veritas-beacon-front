@@ -1,5 +1,5 @@
 
-import { BarChart3, Activity, Calendar, AlertTriangle, Shield } from "lucide-react";
+import { BarChart3, Activity, Calendar, AlertTriangle, Shield, Laptop } from "lucide-react";
 
 export interface Project {
   icon: JSX.Element;
@@ -57,5 +57,14 @@ export const projects: Project[] = [
       "Provides verified blockchain certificates of authentication for a wide variety of providers, ensuring secure and transparent continuing education and professional certification verification.",
     status: "Beta testing - Release in late 2025",
     previewImage: "/lovable-uploads/8ac690d4-4b56-46a4-979c-4fa5839d09c7.png"
+  },
+  {
+    icon: <Laptop size={24} className="text-veritas-primary mb-4" />,
+    title: "Veritas Elevate",
+    subtitle: "AI Learning & Knowledge Platform",
+    description:
+      "A next-generation AI-powered platform for professional learning, growth, and upskilling—with advanced course recommendations, progress tracking, and certification management. ",
+    status: "In development – Release in late 2025",
+    previewImage: "/lovable-uploads/69138c17-cab0-46f0-8cfe-e2170b10f21e.png"
   }
 ];
