@@ -18,6 +18,7 @@ const ProjectDialog = ({ selectedProject }: ProjectDialogProps) => {
   if (selectedProject === 2) return <ProjectDialogNarcTrack />;
   if (selectedProject === 3) return <ProjectDialogEventRisk />;
   if (selectedProject === 4) return <ProjectDialogCertTrack selectedProject={selectedProject} />;
+  // Elevate is project #5
   if (selectedProject === 5) return <ProjectDialogElevate />;
   return null;
 };
