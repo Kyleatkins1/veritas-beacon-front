@@ -11,7 +11,6 @@ interface ProjectCardProps {
 }
 
 const ProjectCard = ({ project, index, onLearnMore }: ProjectCardProps) => {
-  // Use LIVE card for first (EMS Study Buddy), Beta for others, generic for in development
   if (project.status === "LIVE") {
     return <ProjectCardLive project={project} index={index} onLearnMore={onLearnMore} />;
   }

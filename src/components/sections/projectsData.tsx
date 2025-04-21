@@ -29,7 +29,7 @@ export const projects: Project[] = [
     description:
       "Integrated with AI to support Value Analysis Professionals in making data-driven decisions for healthcare procurement and resource allocation.",
     status: "Beta testing - Release in late 2025",
-    previewImage: "/lovable-uploads/3aa7a363-13ef-4176-8e66-3f38e0cb7a14.png"
+    previewImage: "/lovable-uploads/6c6d4791-5dcb-4686-b5ee-10c7fc4e4597.png"
   },
   {
     icon: <AlertTriangle size={24} className="text-veritas-primary mb-4" />,
