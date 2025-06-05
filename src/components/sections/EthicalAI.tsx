@@ -28,7 +28,7 @@ const EthicalAI = () => {
   ];
 
   return (
-    <section className="section-padding bg-gradient-to-br from-veritas-light/50 to-white">
+    <section id="ethical-ai" className="section-padding bg-gradient-to-br from-veritas-light/50 to-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <div className="inline-block mb-4 bg-veritas-primary/10 text-veritas-primary px-4 py-2 rounded-full text-sm font-medium">

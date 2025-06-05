@@ -29,9 +29,10 @@ const Navbar = ({ onEarlyAccessClick }: NavbarProps) => {
   const navLinks = [
     { name: "Home", href: "#home" },
     { name: "Solutions", href: "#services" },
+    { name: "Ethical AI", href: "#ethical-ai" },
     { name: "Projects", href: "#projects" },
     { name: "Features", href: "#features" },
-    { name: "Founder's Vision", href: "#testimonials" }, // Changed from "Testimonials"
+    { name: "Founder's Vision", href: "#testimonials" },
     { name: "Contact", href: "#contact" },
   ];
 
