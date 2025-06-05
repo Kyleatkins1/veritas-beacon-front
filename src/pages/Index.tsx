@@ -6,6 +6,7 @@ import Hero from "@/components/sections/Hero";
 import Services from "@/components/sections/Services";
 import Projects from "@/components/sections/Projects";
 import Features from "@/components/sections/Features";
+import EthicalAI from "@/components/sections/EthicalAI";
 import Testimonials from "@/components/sections/Testimonials";
 import Contact from "@/components/sections/Contact";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -26,6 +27,7 @@ const Index = () => {
         <Services />
         <Projects onEarlyAccessClick={handleInvestorInfoClick} />
         <Features />
+        <EthicalAI />
         <Testimonials onEarlyAccessClick={handleInvestorInfoClick} />
         <Contact />
       </main>
