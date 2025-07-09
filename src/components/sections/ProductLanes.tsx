@@ -3,10 +3,17 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ChevronDown, ChevronUp, Heart, Shield, GraduationCap } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { projects } from "./projectsData";
 
 const ProductLanes = () => {
   const [expandedLane, setExpandedLane] = useState<string | null>(null);
 
+  // Filter projects to only include Live, Beta, and Development (no planned/building)
+  const activeProjects = projects.filter(project => 
+    project.status === 'Live' || project.status === 'Beta' || project.status === 'Development'
+  );
+
+  // Group projects by category and map to product lanes
   const productLanes = [
     {
       id: "healthcare",
@@ -16,11 +23,13 @@ const ProductLanes = () => {
       borderColor: "border-blue-200",
       textColor: "text-blue-700",
       description: "AI-powered solutions for healthcare providers, value analysis, and medical governance",
-      products: [
-        { name: "Veritas Value", description: "Healthcare Value Analysis Platform", status: "Beta" },
-        { name: "AI Governance Suite", description: "Comprehensive AI governance tools", status: "Planned" },
-        { name: "Pathport", description: "Advanced pathway management", status: "Beta" }
-      ]
+      products: activeProjects
+        .filter(p => p.category === 'Healthcare')
+        .map(p => ({
+          name: p.title,
+          description: p.subtitle,
+          status: p.status
+        }))
     },
     {
       id: "public-safety",
@@ -30,12 +39,13 @@ const ProductLanes = () => {
       borderColor: "border-red-200",
       textColor: "text-red-700",
       description: "Safety management and risk assessment solutions for public safety agencies",
-      products: [
-        { name: "NarcTrack", description: "Medication administration analysis", status: "Beta" },
-        { name: "EventRisk / EventOps", description: "Event safety management platform", status: "Beta" },
-        { name: "Veritas Ops", description: "Command center operations system", status: "Building" },
-        { name: "EMS Data Suite", description: "Emergency medical services data management", status: "Planned" }
-      ]
+      products: activeProjects
+        .filter(p => p.category === 'Public Safety')
+        .map(p => ({
+          name: p.title,
+          description: p.subtitle,
+          status: p.status
+        }))
     },
     {
       id: "education",
@@ -45,12 +55,13 @@ const ProductLanes = () => {
       borderColor: "border-green-200",
       textColor: "text-green-700",
       description: "AI-enhanced learning platforms and certification systems",
-      products: [
-        { name: "EMS Study Buddy", description: "AI-powered study companion", status: "Live" },
-        { name: "AccredAssist & AccredTrack", description: "Accreditation management systems", status: "Live" },
-        { name: "AI Microcredentials", description: "Blockchain-verified certifications", status: "Development" },
-        { name: "Veritas Resource Hub", description: "Learning resources and knowledge management", status: "Planned" }
-      ]
+      products: activeProjects
+        .filter(p => p.category === 'Education')
+        .map(p => ({
+          name: p.title,
+          description: p.subtitle,
+          status: p.status
+        }))
     }
   ];
 
@@ -96,15 +107,21 @@ const ProductLanes = () => {
                 {expandedLane === lane.id && (
                   <div className="space-y-3 animate-fade-in">
                     {lane.products.map((product, index) => (
-                      <div key={index} className="bg-white p-4 rounded-lg border shadow-sm">
-                        <div className="flex items-start justify-between mb-2">
-                          <h4 className="font-semibold text-gray-900">{product.name}</h4>
-                          <span className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded-full">
-                            {product.status}
-                          </span>
-                        </div>
-                        <p className="text-sm text-gray-600">{product.description}</p>
-                      </div>
+                       <div key={index} className="bg-white p-4 rounded-lg border shadow-sm">
+                         <div className="flex items-start justify-between mb-2">
+                           <h4 className="font-semibold text-gray-900">{product.name}</h4>
+                           <span className={`text-xs px-2 py-1 rounded-full font-medium ${
+                             product.status === 'Live' 
+                               ? 'bg-green-100 text-green-700' 
+                               : product.status === 'Beta'
+                               ? 'bg-amber-100 text-amber-700'
+                               : 'bg-blue-100 text-blue-700'
+                           }`}>
+                             {product.status}
+                           </span>
+                         </div>
+                         <p className="text-sm text-gray-600">{product.description}</p>
+                       </div>
                     ))}
                   </div>
                 )}
