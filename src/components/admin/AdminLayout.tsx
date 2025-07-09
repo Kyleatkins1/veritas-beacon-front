@@ -17,20 +17,26 @@ interface AdminLayoutProps {
 }
 
 const AdminLayout = ({ children }: AdminLayoutProps) => {
-  const { user, signOut, isAdmin } = useAuth();
+  const { user, signOut, isAdmin, loading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
   const handleSignOut = async () => {
-    await signOut();
-    navigate('/auth');
+    try {
+      await signOut();
+      // Don't navigate here - let the auth state change handle it
+    } catch (error) {
+      console.error('Sign out error:', error);
+      // Fallback navigation if auth state doesn't update
+      navigate('/auth');
+    }
   };
 
   useEffect(() => {
-    if (!user) {
+    if (!user && !loading) {
       navigate('/auth');
     }
-  }, [user, navigate]);
+  }, [user, loading, navigate]);
 
   if (!user) {
     return null;
