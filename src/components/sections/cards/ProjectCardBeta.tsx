@@ -21,9 +21,18 @@ const ProjectCardBeta = ({ project, index, onLearnMore }: ProjectCardBetaProps) 
       </div>
       <p className="text-gray-600 mb-4">{project.description}</p>
       <div className="mt-auto flex flex-col gap-3">
-        <p className="text-sm font-medium text-amber-600 mb-1">
-          {project.status}
-        </p>
+        <div className="flex items-center justify-between">
+          <span className={`text-sm font-medium px-2 py-1 rounded-full ${
+            project.status === 'Beta' 
+              ? 'bg-amber-100 text-amber-700' 
+              : 'bg-blue-100 text-blue-700'
+          }`}>
+            {project.status}
+          </span>
+          {project.releaseDate && (
+            <span className="text-xs text-gray-500">{project.releaseDate}</span>
+          )}
+        </div>
         <Button
           variant="outline"
           className="border-veritas-primary/30 text-veritas-primary hover:bg-veritas-primary/5"
