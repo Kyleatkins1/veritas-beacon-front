@@ -1,54 +1,89 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ArrowLeft, ArrowRight, Quote, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { supabase } from "@/integrations/supabase/client";
+
+interface Testimonial {
+  id: string;
+  name: string;
+  title: string | null;
+  company: string | null;
+  content: string;
+  avatar_url: string | null;
+  sort_order: number | null;
+}
 
 interface TestimonialsProps {
   onEarlyAccessClick?: () => void;
 }
 
 const Testimonials = ({ onEarlyAccessClick }: TestimonialsProps) => {
-  const founderQuotes = [
-    {
-      content:
-        "We founded Veritas Technology Solutions with a vision to transform healthcare safety through innovative AI. Our mission is to build solutions that protect lives and improve outcomes.",
-      author: "Kyle P. Atkins, Ed.S., NRP, FACHDM",
-      position: "Founder & Systems Architect",
-      image: "/lovable-uploads/e1ef3005-1935-4a5b-8e0e-198a76807149.png",
-    },
-    {
-      content:
-        "Healthcare safety is personal to me. After witnessing preventable errors in my own family, I committed to building technology that could change the system for the better.",
-      author: "Kyle P. Atkins, Ed.S., NRP, FACHDM",
-      position: "Founder & Systems Architect",
-      image: "/lovable-uploads/e1ef3005-1935-4a5b-8e0e-198a76807149.png",
-    },
-    {
-      content:
-        "Our 2025 launch represents years of research, development, and collaboration with industry partners. We're creating systems that can anticipate risks before they become dangers.",
-      author: "Kyle P. Atkins, Ed.S., NRP, FACHDM",
-      position: "Founder & Systems Architect",
-      image: "/lovable-uploads/e1ef3005-1935-4a5b-8e0e-198a76807149.png",
-    },
-    {
-      content: 
-        "Technology alone isn't enough. We're building a comprehensive approach that combines cutting-edge AI with human expertise and rigorous ethical standards.",
-      author: "Kyle P. Atkins, Ed.S., NRP, FACHDM",
-      position: "Founder & Systems Architect",
-      image: "/lovable-uploads/e1ef3005-1935-4a5b-8e0e-198a76807149.png",
-    },
-  ];
-
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+  const [loading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    fetchTestimonials();
+    
+    // Set up real-time subscription
+    const channel = supabase
+      .channel('schema-db-changes')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'testimonials'
+        },
+        () => fetchTestimonials()
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, []);
+
+  const fetchTestimonials = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('testimonials')
+        .select('*')
+        .eq('is_active', true)
+        .order('sort_order', { ascending: true });
+
+      if (error) throw error;
+      setTestimonials(data || []);
+    } catch (error) {
+      console.error('Error fetching testimonials:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <section id="testimonials" className="section-padding bg-veritas-light">
+        <div className="container mx-auto px-4">
+          <div className="text-center">Loading testimonials...</div>
+        </div>
+      </section>
+    );
+  }
+
+  if (testimonials.length === 0) {
+    return null;
+  }
 
   const nextTestimonial = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === founderQuotes.length - 1 ? 0 : prevIndex + 1
+      prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   const prevTestimonial = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? founderQuotes.length - 1 : prevIndex - 1
+      prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
     );
   };
 
@@ -72,23 +107,26 @@ const Testimonials = ({ onEarlyAccessClick }: TestimonialsProps) => {
               <div className="md:w-1/3 flex flex-col items-center">
                 <div className="w-24 h-24 rounded-full overflow-hidden mb-4">
                   <img
-                    src={founderQuotes[currentIndex].image}
-                    alt={founderQuotes[currentIndex].author}
+                    src={testimonials[currentIndex].avatar_url || '/placeholder.svg'}
+                    alt={testimonials[currentIndex].name}
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <h4 className="font-semibold text-center">{founderQuotes[currentIndex].author}</h4>
-                <p className="text-sm text-gray-500 text-center">{founderQuotes[currentIndex].position}</p>
+                <h4 className="font-semibold text-center">{testimonials[currentIndex].name}</h4>
+                <p className="text-sm text-gray-500 text-center">
+                  {testimonials[currentIndex].title}
+                  {testimonials[currentIndex].company && `, ${testimonials[currentIndex].company}`}
+                </p>
               </div>
 
               <div className="md:w-2/3">
                 <p className="text-gray-700 text-lg italic mb-6">
-                  "{founderQuotes[currentIndex].content}"
+                  "{testimonials[currentIndex].content}"
                 </p>
                 
                 <div className="flex justify-between items-center">
                   <p className="text-sm text-gray-500">
-                    {currentIndex + 1} of {founderQuotes.length}
+                    {currentIndex + 1} of {testimonials.length}
                   </p>
                   
                   <div className="flex gap-2">
@@ -115,7 +153,7 @@ const Testimonials = ({ onEarlyAccessClick }: TestimonialsProps) => {
           </div>
 
           <div className="flex justify-center mt-6 space-x-2">
-            {founderQuotes.map((_, index) => (
+            {testimonials.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}

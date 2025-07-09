@@ -1,19 +1,81 @@
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { projects } from "./projectsData";
 import ProjectCard from "./ProjectCard";
 import ProjectDialog from "./ProjectDialog";
+import { supabase } from "@/integrations/supabase/client";
+
+interface Project {
+  id: string;
+  title: string;
+  subtitle: string | null;
+  description: string | null;
+  status: string;
+  category: string;
+  image_url: string | null;
+  icon_url: string | null;
+  launch_date: string | null;
+  sort_order: number | null;
+}
 
 interface ProjectsProps {
   onEarlyAccessClick?: () => void;
 }
 
 const Projects = ({ onEarlyAccessClick }: ProjectsProps) => {
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
   const [activeTab, setActiveTab] = useState("all");
+
+  useEffect(() => {
+    fetchProjects();
+    
+    // Set up real-time subscription
+    const channel = supabase
+      .channel('schema-db-changes')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'projects'
+        },
+        () => fetchProjects()
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, []);
+
+  const fetchProjects = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('projects')
+        .select('*')
+        .order('sort_order', { ascending: true });
+
+      if (error) throw error;
+      setProjects(data || []);
+    } catch (error) {
+      console.error('Error fetching projects:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <section id="projects" className="section-padding">
+        <div className="container mx-auto px-4">
+          <div className="text-center">Loading projects...</div>
+        </div>
+      </section>
+    );
+  }
 
   // Group projects by category
   const categorizedProjects = {
@@ -89,13 +151,22 @@ const Projects = ({ onEarlyAccessClick }: ProjectsProps) => {
             <TabsContent key={category} value={category} className="mt-0">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {categorizedProjects[category as keyof typeof categorizedProjects].map((project, index) => {
-                  // Find the original index in the full projects array
-                  const originalIndex = projects.findIndex(p => p.title === project.title);
                   return (
                     <ProjectCard
-                      key={originalIndex}
-                      project={project}
-                      index={originalIndex}
+                      key={project.id}
+                      project={{
+                        icon: project.icon_url ? 
+                          <img src={project.icon_url} alt={`${project.title} Logo`} className="w-8 h-8 mb-4 rounded-md" /> :
+                          <div className="w-8 h-8 mb-4 bg-veritas-primary/10 rounded-md"></div>,
+                        title: project.title,
+                        subtitle: project.subtitle || '',
+                        description: project.description || '',
+                        status: project.status as 'Live' | 'Beta' | 'Development',
+                        category: project.category as 'Healthcare' | 'Public Safety' | 'Education' | 'Tools',
+                        previewImage: project.image_url || '',
+                        releaseDate: project.launch_date || undefined
+                      }}
+                      index={index}
                       onLearnMore={setSelectedProject}
                     />
                   );
