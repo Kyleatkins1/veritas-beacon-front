@@ -7,6 +7,7 @@ import ProductLanes from "@/components/sections/ProductLanes";
 import VeritasLabs from "@/components/sections/VeritasLabs";
 import HowWeBuild from "@/components/sections/HowWeBuild";
 import Projects from "@/components/sections/Projects";
+import Services from "@/components/sections/Services";
 import Testimonials from "@/components/sections/Testimonials";
 import Contact from "@/components/sections/Contact";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -28,6 +29,7 @@ const Index = () => {
         <VeritasLabs />
         <HowWeBuild />
         <Projects onEarlyAccessClick={handleInvestorInfoClick} />
+        <Services />
         <Testimonials onEarlyAccessClick={handleInvestorInfoClick} />
         <Contact />
       </main>

@@ -1,17 +1,60 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ChevronDown, ChevronUp, Heart, Shield, GraduationCap } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { projects } from "./projectsData";
+import { supabase } from "@/integrations/supabase/client";
+
+interface Project {
+  id: string;
+  title: string;
+  subtitle: string | null;
+  description: string | null;
+  status: string;
+  category: string;
+  image_url: string | null;
+  icon_url: string | null;
+  launch_date: string | null;
+}
 
 const ProductLanes = () => {
   const [expandedLane, setExpandedLane] = useState<string | null>(null);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchProjects();
+  }, []);
+
+  const fetchProjects = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('projects')
+        .select('*')
+        .in('status', ['Live', 'Beta', 'Development'])
+        .order('sort_order', { ascending: true });
+
+      if (error) throw error;
+      setProjects(data || []);
+    } catch (error) {
+      console.error('Error fetching projects:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <section className="section-padding bg-gradient-to-b from-white to-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center">Loading products...</div>
+        </div>
+      </section>
+    );
+  }
 
   // Filter projects to only include Live, Beta, and Development (no planned/building)
-  const activeProjects = projects.filter(project => 
-    project.status === 'Live' || project.status === 'Beta' || project.status === 'Development'
-  );
+  const activeProjects = projects;
 
   // Group projects by category and map to product lanes
   const productLanes = [
