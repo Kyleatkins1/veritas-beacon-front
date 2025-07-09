@@ -34,10 +34,16 @@ const ProductLanes = () => {
         .in('status', ['Live', 'Beta', 'Development'])
         .order('sort_order', { ascending: true });
 
-      if (error) throw error;
+      if (error) {
+        console.error('Error fetching projects:', error);
+        throw error;
+      }
+      
       setProjects(data || []);
     } catch (error) {
       console.error('Error fetching projects:', error);
+      // Even on error, clear loading state so UI doesn't hang
+      setProjects([]);
     } finally {
       setLoading(false);
     }
