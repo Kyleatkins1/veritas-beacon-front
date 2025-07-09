@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Stethoscope, ShieldCheck, Activity, Database, Laptop, Users, Lightbulb, Search, Gauge } from "lucide-react";
+import { Stethoscope, ShieldCheck, Activity, Database, Laptop, Users, Lightbulb, Search, Gauge, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Skeleton } from "@/components/ui/skeleton";
 import ConsultationForm from "@/components/forms/ConsultationForm";
+import ErrorBoundary from "@/components/ui/error-boundary";
 import { supabase } from "@/integrations/supabase/client";
 
 interface Service {
@@ -17,6 +19,7 @@ interface Service {
 const Services = () => {
   const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [selectedService, setSelectedService] = useState<number | null>(null);
   const [consultationDialogOpen, setConsultationDialogOpen] = useState(false);
 
@@ -43,6 +46,10 @@ const Services = () => {
   }, []);
 
   const fetchServices = async () => {
+    console.log('🛠️ Services: Starting fetch...');
+    setLoading(true);
+    setError(null);
+    
     try {
       const { data, error } = await supabase
         .from('services')
@@ -50,11 +57,20 @@ const Services = () => {
         .eq('is_active', true)
         .order('sort_order', { ascending: true });
 
-      if (error) throw error;
+      if (error) {
+        console.error('🛠️ Services: Database error:', error);
+        throw error;
+      }
+      
+      console.log('🛠️ Services: Fetched successfully:', data?.length || 0, 'services');
       setServices(data || []);
-    } catch (error) {
-      console.error('Error fetching services:', error);
+    } catch (err) {
+      const errorMsg = err instanceof Error ? err.message : 'Unknown error';
+      console.error('🛠️ Services: Fetch failed:', errorMsg);
+      setError(errorMsg);
+      setServices([]);
     } finally {
+      console.log('🛠️ Services: Fetch completed, clearing loading state');
       setLoading(false);
     }
   };
@@ -77,15 +93,61 @@ const Services = () => {
     return (
       <section id="services" className="section-padding bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="text-center">Loading services...</div>
+          <div className="text-center mb-16">
+            <Skeleton className="h-12 w-64 mx-auto mb-4" />
+            <Skeleton className="h-6 w-96 mx-auto" />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <Card key={i}>
+                <CardHeader className="pb-2">
+                  <Skeleton className="h-10 w-10 mb-6" />
+                  <Skeleton className="h-6 w-32" />
+                </CardHeader>
+                <CardContent>
+                  <Skeleton className="h-4 w-full mb-2" />
+                  <Skeleton className="h-4 w-2/3" />
+                </CardContent>
+                <CardFooter>
+                  <Skeleton className="h-4 w-20" />
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section id="services" className="section-padding bg-gray-50">
+        <div className="container mx-auto px-4">
+          <Card className="mx-auto max-w-lg">
+            <CardHeader className="text-center">
+              <div className="mx-auto w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mb-4">
+                <AlertTriangle className="w-6 h-6 text-red-600" />
+              </div>
+              <CardTitle>Unable to load services</CardTitle>
+              <CardDescription>
+                We're having trouble loading our services. Please try again later.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="text-center">
+              <Button onClick={fetchServices} className="gap-2">
+                Try Again
+              </Button>
+            </CardContent>
+          </Card>
         </div>
       </section>
     );
   }
 
   return (
-    <section id="services" className="section-padding bg-gray-50">
-      <div className="container mx-auto px-4">
+    <ErrorBoundary>
+      <section id="services" className="section-padding bg-gray-50">
+        <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-veritas-primary mb-4">Our Solutions</h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-lg">
@@ -159,7 +221,8 @@ const Services = () => {
           <ConsultationForm onClose={() => setConsultationDialogOpen(false)} />
         </DialogContent>
       </Dialog>
-    </section>
+      </section>
+    </ErrorBoundary>
   );
 };
 

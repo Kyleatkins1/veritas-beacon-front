@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { ArrowLeft, ArrowRight, Quote, TrendingUp } from "lucide-react";
+import { ArrowLeft, ArrowRight, Quote, TrendingUp, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
+import ErrorBoundary from "@/components/ui/error-boundary";
 import { supabase } from "@/integrations/supabase/client";
 
 interface Testimonial {
@@ -20,6 +23,7 @@ interface TestimonialsProps {
 const Testimonials = ({ onEarlyAccessClick }: TestimonialsProps) => {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -45,6 +49,10 @@ const Testimonials = ({ onEarlyAccessClick }: TestimonialsProps) => {
   }, []);
 
   const fetchTestimonials = async () => {
+    console.log('💬 Testimonials: Starting fetch...');
+    setLoading(true);
+    setError(null);
+    
     try {
       const { data, error } = await supabase
         .from('testimonials')
@@ -52,11 +60,20 @@ const Testimonials = ({ onEarlyAccessClick }: TestimonialsProps) => {
         .eq('is_active', true)
         .order('sort_order', { ascending: true });
 
-      if (error) throw error;
+      if (error) {
+        console.error('💬 Testimonials: Database error:', error);
+        throw error;
+      }
+      
+      console.log('💬 Testimonials: Fetched successfully:', data?.length || 0, 'testimonials');
       setTestimonials(data || []);
-    } catch (error) {
-      console.error('Error fetching testimonials:', error);
+    } catch (err) {
+      const errorMsg = err instanceof Error ? err.message : 'Unknown error';
+      console.error('💬 Testimonials: Fetch failed:', errorMsg);
+      setError(errorMsg);
+      setTestimonials([]);
     } finally {
+      console.log('💬 Testimonials: Fetch completed, clearing loading state');
       setLoading(false);
     }
   };
@@ -65,7 +82,58 @@ const Testimonials = ({ onEarlyAccessClick }: TestimonialsProps) => {
     return (
       <section id="testimonials" className="section-padding bg-veritas-light">
         <div className="container mx-auto px-4">
-          <div className="text-center">Loading testimonials...</div>
+          <div className="text-center mb-16">
+            <Skeleton className="h-12 w-64 mx-auto mb-4" />
+            <Skeleton className="h-6 w-96 mx-auto" />
+          </div>
+          <div className="relative max-w-4xl mx-auto">
+            <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
+              <div className="flex flex-col md:flex-row gap-8 items-center">
+                <div className="md:w-1/3 flex flex-col items-center">
+                  <Skeleton className="w-24 h-24 rounded-full mb-4" />
+                  <Skeleton className="h-6 w-32 mb-2" />
+                  <Skeleton className="h-4 w-24" />
+                </div>
+                <div className="md:w-2/3">
+                  <Skeleton className="h-4 w-full mb-2" />
+                  <Skeleton className="h-4 w-full mb-2" />
+                  <Skeleton className="h-4 w-2/3 mb-6" />
+                  <div className="flex justify-between items-center">
+                    <Skeleton className="h-4 w-16" />
+                    <div className="flex gap-2">
+                      <Skeleton className="h-10 w-10 rounded-full" />
+                      <Skeleton className="h-10 w-10 rounded-full" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section id="testimonials" className="section-padding bg-veritas-light">
+        <div className="container mx-auto px-4">
+          <Card className="mx-auto max-w-lg">
+            <CardHeader className="text-center">
+              <div className="mx-auto w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mb-4">
+                <AlertTriangle className="w-6 h-6 text-red-600" />
+              </div>
+              <CardTitle>Unable to load testimonials</CardTitle>
+              <CardDescription>
+                We're having trouble loading testimonials. Please try again later.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="text-center">
+              <Button onClick={fetchTestimonials} className="gap-2">
+                Try Again
+              </Button>
+            </CardContent>
+          </Card>
         </div>
       </section>
     );
@@ -88,8 +156,9 @@ const Testimonials = ({ onEarlyAccessClick }: TestimonialsProps) => {
   };
 
   return (
-    <section id="testimonials" className="section-padding bg-veritas-light">
-      <div className="container mx-auto px-4">
+    <ErrorBoundary>
+      <section id="testimonials" className="section-padding bg-veritas-light">
+        <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-veritas-primary mb-4">A Word From Our Founder</h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-lg">
@@ -188,7 +257,8 @@ const Testimonials = ({ onEarlyAccessClick }: TestimonialsProps) => {
           </div>
         </div>
       </div>
-    </section>
+      </section>
+    </ErrorBoundary>
   );
 };
 

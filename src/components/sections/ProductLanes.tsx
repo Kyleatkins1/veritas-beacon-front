@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ChevronDown, ChevronUp, Heart, Shield, GraduationCap } from "lucide-react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { ChevronDown, ChevronUp, Heart, Shield, GraduationCap, AlertTriangle } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
+import ErrorBoundary from "@/components/ui/error-boundary";
 import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -21,12 +23,17 @@ const ProductLanes = () => {
   const [expandedLane, setExpandedLane] = useState<string | null>(null);
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     fetchProjects();
   }, []);
 
   const fetchProjects = async () => {
+    console.log('🏗️ ProductLanes: Starting fetch...');
+    setLoading(true);
+    setError(null);
+    
     try {
       const { data, error } = await supabase
         .from('projects')
@@ -35,25 +42,71 @@ const ProductLanes = () => {
         .order('sort_order', { ascending: true });
 
       if (error) {
-        console.error('Error fetching projects:', error);
+        console.error('🏗️ ProductLanes: Database error:', error);
         throw error;
       }
       
+      console.log('🏗️ ProductLanes: Fetched successfully:', data?.length || 0, 'projects');
       setProjects(data || []);
-    } catch (error) {
-      console.error('Error fetching projects:', error);
-      // Even on error, clear loading state so UI doesn't hang
+    } catch (err) {
+      const errorMsg = err instanceof Error ? err.message : 'Unknown error';
+      console.error('🏗️ ProductLanes: Fetch failed:', errorMsg);
+      setError(errorMsg);
       setProjects([]);
     } finally {
+      console.log('🏗️ ProductLanes: Fetch completed, clearing loading state');
       setLoading(false);
     }
   };
 
   if (loading) {
     return (
-      <section className="section-padding bg-gradient-to-b from-white to-gray-50">
+      <section id="product-lanes" className="section-padding bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="text-center">Loading products...</div>
+          <div className="text-center mb-16">
+            <Skeleton className="h-12 w-64 mx-auto mb-4" />
+            <Skeleton className="h-6 w-96 mx-auto" />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {Array.from({ length: 3 }).map((_, i) => (
+              <Card key={i}>
+                <CardHeader>
+                  <Skeleton className="h-12 w-12 mb-4" />
+                  <Skeleton className="h-6 w-32" />
+                </CardHeader>
+                <CardContent>
+                  <Skeleton className="h-4 w-full mb-2" />
+                  <Skeleton className="h-4 w-2/3 mb-6" />
+                  <Skeleton className="h-8 w-24" />
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section id="product-lanes" className="section-padding bg-gray-50">
+        <div className="container mx-auto px-4">
+          <Card className="mx-auto max-w-lg">
+            <CardHeader className="text-center">
+              <div className="mx-auto w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mb-4">
+                <AlertTriangle className="w-6 h-6 text-red-600" />
+              </div>
+              <CardTitle>Unable to load products</CardTitle>
+              <CardDescription>
+                We're having trouble loading our product information. Please try again later.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="text-center">
+              <Button onClick={fetchProjects} className="gap-2">
+                Try Again
+              </Button>
+            </CardContent>
+          </Card>
         </div>
       </section>
     );
@@ -115,8 +168,9 @@ const ProductLanes = () => {
   ];
 
   return (
-    <section id="product-lanes" className="section-padding bg-gray-50">
-      <div className="container mx-auto px-4">
+    <ErrorBoundary>
+      <section id="product-lanes" className="section-padding bg-gray-50">
+        <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-veritas-primary mb-4">Our Three Core Verticals</h2>
           <p className="text-gray-600 max-w-3xl mx-auto text-lg">
@@ -188,7 +242,8 @@ const ProductLanes = () => {
           </Button>
         </div>
       </div>
-    </section>
+      </section>
+    </ErrorBoundary>
   );
 };
 
