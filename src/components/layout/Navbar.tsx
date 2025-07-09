@@ -28,11 +28,11 @@ const Navbar = ({ onEarlyAccessClick }: NavbarProps) => {
 
   const navLinks = [
     { name: "Home", href: "#home" },
-    { name: "Solutions", href: "#services" },
-    { name: "Ethical AI", href: "#ethical-ai" },
+    { name: "Product Lanes", href: "#product-lanes" },
+    { name: "Veritas Labs", href: "#veritas-labs" },
+    { name: "How We Build", href: "#how-we-build" },
     { name: "Projects", href: "#projects" },
-    { name: "Features", href: "#features" },
-    { name: "Founder's Vision", href: "#testimonials" },
+    { name: "About", href: "#testimonials" },
     { name: "Contact", href: "#contact" },
   ];
 

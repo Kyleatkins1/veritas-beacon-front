@@ -4,7 +4,6 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
 import ProductLanes from "@/components/sections/ProductLanes";
-import EthicalAI from "@/components/sections/EthicalAI";
 import VeritasLabs from "@/components/sections/VeritasLabs";
 import HowWeBuild from "@/components/sections/HowWeBuild";
 import Projects from "@/components/sections/Projects";
@@ -26,7 +25,6 @@ const Index = () => {
       <main>
         <Hero />
         <ProductLanes />
-        <EthicalAI />
         <VeritasLabs />
         <HowWeBuild />
         <Projects onEarlyAccessClick={handleInvestorInfoClick} />
