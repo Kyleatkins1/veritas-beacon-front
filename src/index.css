@@ -37,6 +37,13 @@
 
     --radius: 0.5rem;
 
+    /* Veritas Brand Colors */
+    --veritas-primary: 221 78% 32%;     /* Deep blue #1E3A8A */
+    --veritas-secondary: 178 76% 23%;   /* Teal #0F766E */  
+    --veritas-accent: 213 94% 68%;      /* Bright blue #3B82F6 */
+    --veritas-light: 214 100% 97%;      /* Light blue #EFF6FF */
+    --veritas-dark: 215 25% 27%;        /* Dark slate #1E293B */
+
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -75,6 +82,14 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
+    
+    /* Veritas Brand Colors - Dark Mode */
+    --veritas-primary: 213 94% 68%;     /* Brighter blue for dark mode */
+    --veritas-secondary: 178 76% 35%;   /* Lighter teal for dark mode */
+    --veritas-accent: 213 94% 68%;      /* Bright blue */
+    --veritas-light: 215 25% 15%;       /* Dark background */
+    --veritas-dark: 214 100% 97%;       /* Light text on dark */
+    
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;

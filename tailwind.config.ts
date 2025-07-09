@@ -21,11 +21,11 @@ export default {
 		extend: {
 			colors: {
 				veritas: {
-					primary: '#1E3A8A',   // Deep blue
-					secondary: '#0F766E', // Teal
-					accent: '#3B82F6',    // Bright blue
-					light: '#EFF6FF',     // Light blue background
-					dark: '#1E293B',      // Dark text/backgrounds
+					primary: 'hsl(var(--veritas-primary))',
+					secondary: 'hsl(var(--veritas-secondary))', 
+					accent: 'hsl(var(--veritas-accent))',
+					light: 'hsl(var(--veritas-light))',
+					dark: 'hsl(var(--veritas-dark))',
 				},
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
