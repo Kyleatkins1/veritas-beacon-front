@@ -32,7 +32,7 @@ const VeritasLabs = () => {
     <section id="veritas-labs" className="section-padding bg-gradient-to-br from-gray-900 to-gray-800 text-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-veritas-primary/20 text-veritas-primary px-4 py-2 rounded-full text-sm font-medium mb-4">
+          <div className="inline-flex items-center gap-2 bg-white/10 text-white px-4 py-2 rounded-full text-sm font-medium mb-4">
             <Lightbulb className="h-4 w-4" />
             Veritas Labs
           </div>
@@ -50,11 +50,11 @@ const VeritasLabs = () => {
             <Card key={index} className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/15 transition-all duration-300">
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between mb-2">
-                  <div className="text-veritas-primary">{project.icon}</div>
-                  <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">{project.status}</span>
+                  <div className="text-white">{project.icon}</div>
+                  <span className="bg-white/20 text-white text-xs px-2 py-1 rounded-full border border-white/30">{project.status}</span>
                 </div>
                 <CardTitle className="text-white text-lg">{project.title}</CardTitle>
-                <p className="text-veritas-primary text-sm font-medium">{project.subtitle}</p>
+                <p className="text-gray-300 text-sm font-medium">{project.subtitle}</p>
               </CardHeader>
               <CardContent className="pt-0">
                 <p className="text-gray-300 text-sm">{project.description}</p>
