@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ChevronDown, Shield } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import { 
   Dialog,
   DialogContent,
@@ -62,20 +62,10 @@ const Hero = () => {
               </Button>
             </div>
             
-            <div className="mt-8 flex flex-col gap-4">
+            <div className="mt-8 flex items-center gap-4">
               <p className="text-sm text-gray-600">
                 <span className="font-semibold">Coming soon:</span> Beta release in late 2025
               </p>
-              
-              <a 
-                href="https://pledge.veritastech.io" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm text-veritas-primary hover:text-veritas-primary/80 transition-colors"
-              >
-                <Shield size={16} />
-                Learn About Our Commitment to Ethical AI
-              </a>
             </div>
           </div>
           

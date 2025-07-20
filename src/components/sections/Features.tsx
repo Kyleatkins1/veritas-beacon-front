@@ -73,31 +73,31 @@ const Features = () => {
           </div>
         </div>
 
-        {/* Vision Section with improved mobile layout */}
-        <div className="mt-24 bg-veritas-primary text-white rounded-xl p-6 md:p-8 shadow-lg">
+        {/* Vision Section instead of Stats */}
+        <div className="mt-24 bg-veritas-primary text-white rounded-xl p-8 shadow-lg">
           <div className="text-center mb-6">
-            <h3 className="text-2xl md:text-3xl font-bold mb-4">Our Vision for 2025</h3>
-            <p className="max-w-2xl mx-auto text-sm md:text-base">
+            <h3 className="text-2xl font-bold mb-4">Our Vision for 2025</h3>
+            <p className="max-w-2xl mx-auto">
               As we prepare for our 2025 launch, we're building solutions that will revolutionize healthcare 
               and safety technology, creating measurable improvements in outcomes and efficiency.
             </p>
           </div>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 text-center mt-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center mt-8">
             <div className="flex flex-col">
-              <span className="text-2xl md:text-4xl font-bold mb-2">Innovation</span>
-              <span className="text-xs md:text-sm text-white/80">AI-Driven Solutions</span>
+              <span className="text-4xl font-bold mb-2">Innovation</span>
+              <span className="text-sm text-white/80">AI-Driven Solutions</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-2xl md:text-4xl font-bold mb-2">Security</span>
-              <span className="text-xs md:text-sm text-white/80">HIPAA Compliance</span>
+              <span className="text-4xl font-bold mb-2">Security</span>
+              <span className="text-sm text-white/80">HIPAA Compliance</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-2xl md:text-4xl font-bold mb-2">Efficiency</span>
-              <span className="text-xs md:text-sm text-white/80">Streamlined Workflows</span>
+              <span className="text-4xl font-bold mb-2">Efficiency</span>
+              <span className="text-sm text-white/80">Streamlined Workflows</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-2xl md:text-4xl font-bold mb-2">Safety</span>
-              <span className="text-xs md:text-sm text-white/80">Risk Reduction</span>
+              <span className="text-4xl font-bold mb-2">Safety</span>
+              <span className="text-sm text-white/80">Risk Reduction</span>
             </div>
           </div>
         </div>

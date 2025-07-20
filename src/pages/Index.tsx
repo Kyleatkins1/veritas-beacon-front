@@ -3,11 +3,9 @@ import React, { useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
-import ProductLanes from "@/components/sections/ProductLanes";
-import VeritasLabs from "@/components/sections/VeritasLabs";
-import HowWeBuild from "@/components/sections/HowWeBuild";
-import Projects from "@/components/sections/Projects";
 import Services from "@/components/sections/Services";
+import Projects from "@/components/sections/Projects";
+import Features from "@/components/sections/Features";
 import Testimonials from "@/components/sections/Testimonials";
 import Contact from "@/components/sections/Contact";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -25,11 +23,9 @@ const Index = () => {
       <Navbar onEarlyAccessClick={handleInvestorInfoClick} />
       <main>
         <Hero />
-        <ProductLanes />
-        <VeritasLabs />
-        <HowWeBuild />
-        <Projects onEarlyAccessClick={handleInvestorInfoClick} />
         <Services />
+        <Projects onEarlyAccessClick={handleInvestorInfoClick} />
+        <Features />
         <Testimonials onEarlyAccessClick={handleInvestorInfoClick} />
         <Contact />
       </main>

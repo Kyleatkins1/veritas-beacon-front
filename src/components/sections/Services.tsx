@@ -1,153 +1,69 @@
-import React, { useState, useEffect } from "react";
-import { Stethoscope, ShieldCheck, Activity, Database, Laptop, Users, Lightbulb, Search, Gauge, AlertTriangle } from "lucide-react";
+
+import React, { useState } from "react";
+import { Stethoscope, ShieldCheck, Activity, Database, Laptop, Users, Lightbulb, Search, Gauge } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { Skeleton } from "@/components/ui/skeleton";
 import ConsultationForm from "@/components/forms/ConsultationForm";
-import ErrorBoundary from "@/components/ui/error-boundary";
-import { supabase } from "@/integrations/supabase/client";
-
-interface Service {
-  id: string;
-  title: string;
-  description: string | null;
-  features: string[] | null;
-  sort_order: number | null;
-}
 
 const Services = () => {
-  const [services, setServices] = useState<Service[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const [selectedService, setSelectedService] = useState<number | null>(null);
   const [consultationDialogOpen, setConsultationDialogOpen] = useState(false);
 
-  useEffect(() => {
-    fetchServices();
-    
-    // Set up real-time subscription
-    const channel = supabase
-      .channel('schema-db-changes')
-      .on(
-        'postgres_changes',
-        {
-          event: '*',
-          schema: 'public',
-          table: 'services'
-        },
-        () => fetchServices()
-      )
-      .subscribe();
-
-    return () => {
-      supabase.removeChannel(channel);
-    };
-  }, []);
-
-  const fetchServices = async () => {
-    console.log('🛠️ Services: Starting fetch...');
-    setLoading(true);
-    setError(null);
-    
-    try {
-      const { data, error } = await supabase
-        .from('services')
-        .select('*')
-        .eq('is_active', true)
-        .order('sort_order', { ascending: true });
-
-      if (error) {
-        console.error('🛠️ Services: Database error:', error);
-        throw error;
-      }
-      
-      console.log('🛠️ Services: Fetched successfully:', data?.length || 0, 'services');
-      setServices(data || []);
-    } catch (err) {
-      const errorMsg = err instanceof Error ? err.message : 'Unknown error';
-      console.error('🛠️ Services: Fetch failed:', errorMsg);
-      setError(errorMsg);
-      setServices([]);
-    } finally {
-      console.log('🛠️ Services: Fetch completed, clearing loading state');
-      setLoading(false);
+  const services = [
+    {
+      icon: <Stethoscope className="h-10 w-10 text-veritas-primary mb-6" />,
+      title: "Healthcare SaaS Solutions",
+      description: "Specialized software applications designed specifically for healthcare providers to streamline workflows and improve patient outcomes.",
+      detailedDescription: "Our Healthcare SaaS Solutions offer comprehensive software tools tailored to the unique challenges of healthcare providers. We leverage cutting-edge technology to enhance operational efficiency, improve patient care coordination, and provide actionable insights through advanced analytics."
+    },
+    {
+      icon: <ShieldCheck className="h-10 w-10 text-veritas-primary mb-6" />,
+      title: "Safety & Risk Management",
+      description: "Integrated platforms for safety-focused agencies to identify, assess, and mitigate risks through data-driven insights.",
+      detailedDescription: "Our Safety & Risk Management solutions provide robust tools for identifying potential risks, performing comprehensive assessments, and developing strategic mitigation strategies. We help organizations proactively manage and minimize potential safety challenges."
+    },
+    {
+      icon: <Activity className="h-10 w-10 text-veritas-primary mb-6" />,
+      title: "Analytics & Reporting",
+      description: "Advanced data analytics solutions to transform healthcare and safety data into actionable insights for better decision-making.",
+      detailedDescription: "Transform raw data into strategic insights with our advanced Analytics & Reporting tools. We help organizations decode complex data sets, providing clear, actionable intelligence that drives informed decision-making and operational excellence."
+    },
+    {
+      icon: <Database className="h-10 w-10 text-veritas-primary mb-6" />,
+      title: "Custom SaaS Development",
+      description: "Tailored software solutions designed to address specific challenges in healthcare and public safety sectors.",
+      detailedDescription: "We specialize in creating bespoke SaaS solutions that precisely address your organization's unique challenges. Our custom development approach ensures that your software not only meets but exceeds your specific operational requirements."
+    },
+    {
+      icon: <Lightbulb className="h-10 w-10 text-veritas-primary mb-6" />,
+      title: "AI Implementation",
+      description: "Guidance on ethically implementing AI in healthcare and safety environments, from framework development to practical integration.",
+      detailedDescription: "Navigate the complex landscape of AI implementation with our expert guidance. We provide comprehensive support from ethical framework development to practical, responsible AI integration that enhances organizational capabilities."
+    },
+    {
+      icon: <Search className="h-10 w-10 text-veritas-primary mb-6" />,
+      title: "SEO Support",
+      description: "Specialized SEO services for healthcare organizations to improve their digital presence and reach their target audience effectively.",
+      detailedDescription: "Boost your digital visibility with our specialized SEO services. We help healthcare organizations optimize their online presence, improve search rankings, and effectively connect with their target audience through strategic digital marketing techniques."
+    },
+    {
+      icon: <Users className="h-10 w-10 text-veritas-primary mb-6" />,
+      title: "AI Education & Training",
+      description: "Comprehensive training programs to help your team understand and leverage artificial intelligence in healthcare and safety contexts.",
+      detailedDescription: "Empower your team with our comprehensive AI Education & Training programs. We provide in-depth learning experiences that demystify AI technologies and provide practical skills for implementation in healthcare and safety environments."
+    },
+    {
+      icon: <Gauge className="h-10 w-10 text-veritas-primary mb-6" />,
+      title: "Organizational AI Transition",
+      description: "End-to-end support for organizations adopting AI technologies, covering ethics, governance, implementation, and operational integration.",
+      detailedDescription: "Facilitate a smooth, responsible AI transition with our end-to-end support. We guide organizations through ethical considerations, governance frameworks, seamless implementation, and strategic operational integration of AI technologies."
     }
-  };
-
-  const getServiceIcon = (title: string) => {
-    const iconMap: Record<string, JSX.Element> = {
-      "Healthcare SaaS Solutions": <Stethoscope className="h-10 w-10 text-veritas-primary mb-6" />,
-      "Safety & Risk Management": <ShieldCheck className="h-10 w-10 text-veritas-primary mb-6" />,
-      "Analytics & Reporting": <Activity className="h-10 w-10 text-veritas-primary mb-6" />,
-      "Custom SaaS Development": <Database className="h-10 w-10 text-veritas-primary mb-6" />,
-      "AI Implementation": <Lightbulb className="h-10 w-10 text-veritas-primary mb-6" />,
-      "SEO Support": <Search className="h-10 w-10 text-veritas-primary mb-6" />,
-      "AI Education & Training": <Users className="h-10 w-10 text-veritas-primary mb-6" />,
-      "Organizational AI Transition": <Gauge className="h-10 w-10 text-veritas-primary mb-6" />
-    };
-    return iconMap[title] || <Database className="h-10 w-10 text-veritas-primary mb-6" />;
-  };
-
-  if (loading) {
-    return (
-      <section id="services" className="section-padding bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <Skeleton className="h-12 w-64 mx-auto mb-4" />
-            <Skeleton className="h-6 w-96 mx-auto" />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {Array.from({ length: 8 }).map((_, i) => (
-              <Card key={i}>
-                <CardHeader className="pb-2">
-                  <Skeleton className="h-10 w-10 mb-6" />
-                  <Skeleton className="h-6 w-32" />
-                </CardHeader>
-                <CardContent>
-                  <Skeleton className="h-4 w-full mb-2" />
-                  <Skeleton className="h-4 w-2/3" />
-                </CardContent>
-                <CardFooter>
-                  <Skeleton className="h-4 w-20" />
-                </CardFooter>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  if (error) {
-    return (
-      <section id="services" className="section-padding bg-gray-50">
-        <div className="container mx-auto px-4">
-          <Card className="mx-auto max-w-lg">
-            <CardHeader className="text-center">
-              <div className="mx-auto w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mb-4">
-                <AlertTriangle className="w-6 h-6 text-red-600" />
-              </div>
-              <CardTitle>Unable to load services</CardTitle>
-              <CardDescription>
-                We're having trouble loading our services. Please try again later.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="text-center">
-              <Button onClick={fetchServices} className="gap-2">
-                Try Again
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-    );
-  }
+  ];
 
   return (
-    <ErrorBoundary>
-      <section id="services" className="section-padding bg-gray-50">
-        <div className="container mx-auto px-4">
+    <section id="services" className="section-padding bg-gray-50">
+      <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-veritas-primary mb-4">Our Solutions</h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-lg">
@@ -163,7 +79,7 @@ const Services = () => {
               className="border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300"
             >
               <CardHeader className="pb-2">
-                <div>{getServiceIcon(service.title)}</div>
+                <div>{service.icon}</div>
                 <CardTitle className="text-xl">{service.title}</CardTitle>
               </CardHeader>
               <CardContent>
@@ -197,13 +113,13 @@ const Services = () => {
         </div>
       </div>
 
-      {selectedService !== null && services[selectedService] && (
+      {selectedService !== null && (
         <Dialog open={selectedService !== null} onOpenChange={() => setSelectedService(null)}>
           <DialogContent>
             <DialogHeader>
               <DialogTitle>{services[selectedService].title}</DialogTitle>
               <DialogDescription>
-                {services[selectedService].features?.[0] || services[selectedService].description}
+                {services[selectedService].detailedDescription}
               </DialogDescription>
             </DialogHeader>
           </DialogContent>
@@ -221,8 +137,7 @@ const Services = () => {
           <ConsultationForm onClose={() => setConsultationDialogOpen(false)} />
         </DialogContent>
       </Dialog>
-      </section>
-    </ErrorBoundary>
+    </section>
   );
 };
 

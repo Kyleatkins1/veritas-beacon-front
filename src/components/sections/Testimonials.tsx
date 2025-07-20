@@ -1,164 +1,60 @@
-import React, { useState, useEffect } from "react";
-import { ArrowLeft, ArrowRight, Quote, TrendingUp, AlertTriangle } from "lucide-react";
+import React, { useState } from "react";
+import { ArrowLeft, ArrowRight, Quote, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
-import ErrorBoundary from "@/components/ui/error-boundary";
-import { supabase } from "@/integrations/supabase/client";
-
-interface Testimonial {
-  id: string;
-  name: string;
-  title: string | null;
-  company: string | null;
-  content: string;
-  avatar_url: string | null;
-  sort_order: number | null;
-}
 
 interface TestimonialsProps {
   onEarlyAccessClick?: () => void;
 }
 
 const Testimonials = ({ onEarlyAccessClick }: TestimonialsProps) => {
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const founderQuotes = [
+    {
+      content:
+        "We founded Veritas Technology Solutions with a vision to transform healthcare safety through innovative AI. Our mission is to build solutions that protect lives and improve outcomes.",
+      author: "Kyle P. Atkins, Ed.S., NRP, FACHDM",
+      position: "Founder & Systems Architect",
+      image: "/lovable-uploads/e1ef3005-1935-4a5b-8e0e-198a76807149.png",
+    },
+    {
+      content:
+        "Healthcare safety is personal to me. After witnessing preventable errors in my own family, I committed to building technology that could change the system for the better.",
+      author: "Kyle P. Atkins, Ed.S., NRP, FACHDM",
+      position: "Founder & Systems Architect",
+      image: "/lovable-uploads/e1ef3005-1935-4a5b-8e0e-198a76807149.png",
+    },
+    {
+      content:
+        "Our 2025 launch represents years of research, development, and collaboration with industry partners. We're creating systems that can anticipate risks before they become dangers.",
+      author: "Kyle P. Atkins, Ed.S., NRP, FACHDM",
+      position: "Founder & Systems Architect",
+      image: "/lovable-uploads/e1ef3005-1935-4a5b-8e0e-198a76807149.png",
+    },
+    {
+      content: 
+        "Technology alone isn't enough. We're building a comprehensive approach that combines cutting-edge AI with human expertise and rigorous ethical standards.",
+      author: "Kyle P. Atkins, Ed.S., NRP, FACHDM",
+      position: "Founder & Systems Architect",
+      image: "/lovable-uploads/e1ef3005-1935-4a5b-8e0e-198a76807149.png",
+    },
+  ];
+
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    fetchTestimonials();
-    
-    // Set up real-time subscription
-    const channel = supabase
-      .channel('schema-db-changes')
-      .on(
-        'postgres_changes',
-        {
-          event: '*',
-          schema: 'public',
-          table: 'testimonials'
-        },
-        () => fetchTestimonials()
-      )
-      .subscribe();
-
-    return () => {
-      supabase.removeChannel(channel);
-    };
-  }, []);
-
-  const fetchTestimonials = async () => {
-    console.log('💬 Testimonials: Starting fetch...');
-    setLoading(true);
-    setError(null);
-    
-    try {
-      const { data, error } = await supabase
-        .from('testimonials')
-        .select('*')
-        .eq('is_active', true)
-        .order('sort_order', { ascending: true });
-
-      if (error) {
-        console.error('💬 Testimonials: Database error:', error);
-        throw error;
-      }
-      
-      console.log('💬 Testimonials: Fetched successfully:', data?.length || 0, 'testimonials');
-      setTestimonials(data || []);
-    } catch (err) {
-      const errorMsg = err instanceof Error ? err.message : 'Unknown error';
-      console.error('💬 Testimonials: Fetch failed:', errorMsg);
-      setError(errorMsg);
-      setTestimonials([]);
-    } finally {
-      console.log('💬 Testimonials: Fetch completed, clearing loading state');
-      setLoading(false);
-    }
-  };
-
-  if (loading) {
-    return (
-      <section id="testimonials" className="section-padding bg-veritas-light">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <Skeleton className="h-12 w-64 mx-auto mb-4" />
-            <Skeleton className="h-6 w-96 mx-auto" />
-          </div>
-          <div className="relative max-w-4xl mx-auto">
-            <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
-              <div className="flex flex-col md:flex-row gap-8 items-center">
-                <div className="md:w-1/3 flex flex-col items-center">
-                  <Skeleton className="w-24 h-24 rounded-full mb-4" />
-                  <Skeleton className="h-6 w-32 mb-2" />
-                  <Skeleton className="h-4 w-24" />
-                </div>
-                <div className="md:w-2/3">
-                  <Skeleton className="h-4 w-full mb-2" />
-                  <Skeleton className="h-4 w-full mb-2" />
-                  <Skeleton className="h-4 w-2/3 mb-6" />
-                  <div className="flex justify-between items-center">
-                    <Skeleton className="h-4 w-16" />
-                    <div className="flex gap-2">
-                      <Skeleton className="h-10 w-10 rounded-full" />
-                      <Skeleton className="h-10 w-10 rounded-full" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  if (error) {
-    return (
-      <section id="testimonials" className="section-padding bg-veritas-light">
-        <div className="container mx-auto px-4">
-          <Card className="mx-auto max-w-lg">
-            <CardHeader className="text-center">
-              <div className="mx-auto w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mb-4">
-                <AlertTriangle className="w-6 h-6 text-red-600" />
-              </div>
-              <CardTitle>Unable to load testimonials</CardTitle>
-              <CardDescription>
-                We're having trouble loading testimonials. Please try again later.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="text-center">
-              <Button onClick={fetchTestimonials} className="gap-2">
-                Try Again
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-    );
-  }
-
-  if (testimonials.length === 0) {
-    return null;
-  }
 
   const nextTestimonial = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
+      prevIndex === founderQuotes.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   const prevTestimonial = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
+      prevIndex === 0 ? founderQuotes.length - 1 : prevIndex - 1
     );
   };
 
   return (
-    <ErrorBoundary>
-      <section id="testimonials" className="section-padding bg-veritas-light">
-        <div className="container mx-auto px-4">
+    <section id="testimonials" className="section-padding bg-veritas-light">
+      <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-veritas-primary mb-4">A Word From Our Founder</h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-lg">
@@ -176,26 +72,23 @@ const Testimonials = ({ onEarlyAccessClick }: TestimonialsProps) => {
               <div className="md:w-1/3 flex flex-col items-center">
                 <div className="w-24 h-24 rounded-full overflow-hidden mb-4">
                   <img
-                    src={testimonials[currentIndex].avatar_url || '/placeholder.svg'}
-                    alt={testimonials[currentIndex].name}
+                    src={founderQuotes[currentIndex].image}
+                    alt={founderQuotes[currentIndex].author}
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <h4 className="font-semibold text-center">{testimonials[currentIndex].name}</h4>
-                <p className="text-sm text-gray-500 text-center">
-                  {testimonials[currentIndex].title}
-                  {testimonials[currentIndex].company && `, ${testimonials[currentIndex].company}`}
-                </p>
+                <h4 className="font-semibold text-center">{founderQuotes[currentIndex].author}</h4>
+                <p className="text-sm text-gray-500 text-center">{founderQuotes[currentIndex].position}</p>
               </div>
 
               <div className="md:w-2/3">
                 <p className="text-gray-700 text-lg italic mb-6">
-                  "{testimonials[currentIndex].content}"
+                  "{founderQuotes[currentIndex].content}"
                 </p>
                 
                 <div className="flex justify-between items-center">
                   <p className="text-sm text-gray-500">
-                    {currentIndex + 1} of {testimonials.length}
+                    {currentIndex + 1} of {founderQuotes.length}
                   </p>
                   
                   <div className="flex gap-2">
@@ -222,7 +115,7 @@ const Testimonials = ({ onEarlyAccessClick }: TestimonialsProps) => {
           </div>
 
           <div className="flex justify-center mt-6 space-x-2">
-            {testimonials.map((_, index) => (
+            {founderQuotes.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
@@ -257,8 +150,7 @@ const Testimonials = ({ onEarlyAccessClick }: TestimonialsProps) => {
           </div>
         </div>
       </div>
-      </section>
-    </ErrorBoundary>
+    </section>
   );
 };
 

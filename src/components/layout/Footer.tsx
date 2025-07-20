@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Facebook, Twitter, Linkedin, Instagram, Mail, MapPin } from "lucide-react";
 
@@ -94,24 +93,9 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Copyright and Status Badge */}
-        <div className="border-t border-gray-700 mt-12 pt-6">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-gray-400 text-sm text-center sm:text-left">
-              &copy; {new Date().getFullYear()} Veritas Technology Solutions. All rights reserved.
-            </p>
-            <div className="flex justify-center sm:justify-end">
-              <iframe 
-                src="https://status.veritastech.io/badge?theme=dark" 
-                width="250" 
-                height="30" 
-                frameBorder="0" 
-                scrolling="no" 
-                style={{ colorScheme: 'normal' }}
-                title="Veritas Tech Status"
-              />
-            </div>
-          </div>
+        {/* Copyright */}
+        <div className="border-t border-gray-700 mt-12 pt-6 text-center text-gray-400 text-sm">
+          <p>&copy; {new Date().getFullYear()} Veritas Technology Solutions. All rights reserved.</p>
         </div>
       </div>
     </footer>
